@@ -1,0 +1,58 @@
+.social-list {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.social-list li a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.social-list li i {
+    color: hotpink;
+    font-size: 1.2rem;
+    transition: transform 0.2s ease;
+}
+
+.social-list li a:hover i {
+    transform: scale(1.2);
+    color: #e83e8c;
+}
+
+.fcontact {
+    margin-left: 100px;
+    margin-right: 100px;
+    border-radius: 10px;
+}
+
+.container {
+    background-color: white;
+    border-radius: 10px;
+
+}
+
+.map {
+    max-width: 90%;
+    padding-bottom: 30px;
+    padding-top: 30px;
+
+}
+
+.ubicacion i {
+    color: hotpink;
+}
+
+.text-hotpink {
+    color: hotpink;
+}

@@ -1,0 +1,283 @@
+/* === Página de Productos === */
+
+.producto-item {
+  border: 1px solid #ddd;
+  background-color: white;
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+
+
+.productos-page {
+  padding: 40px 20px;
+
+}
+
+/* Contenedor de filtros */
+.filtros-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  gap: 15px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.busqueda {
+  padding: 10px 15px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  outline: none;
+  transition: all 0.3s;
+}
+
+.busqueda:focus {
+  border-color: #e83e8c;
+  /* rosa */
+  box-shadow: 0 0 5px rgba(232, 62, 140, 0.5);
+}
+
+/* Estilo para el select de categorías */
+.categorias .form-select {
+  border-radius: 20px;
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: all 0.3s;
+}
+
+.categorias .form-select:focus {
+  border-color: #e83e8c;
+  box-shadow: 0 0 5px rgba(232, 62, 140, 0.5);
+}
+
+
+/* Rejilla de productos */
+.productos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+  padding: 0 15px;
+}
+
+/* Tarjeta de producto (relleno dinámico) */
+.producto-item {
+  border: 1px solid #ddd;
+  background-color: white;
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+
+.producto-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.producto-item img {
+  max-width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.producto-item h5 {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.producto-item p {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* Estilos para las tarjetas de producto en la página de productos */
+#contenedor-productos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 10px 5px;
+}
+
+/* Estilos para las tarjetas de producto */
+.producto-card {
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  background-color: white;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+
+.producto-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.producto-img-container {
+  position: relative;
+  padding-top: 10px;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.producto-img {
+  max-width: 100%;
+  max-height: 160px;
+  object-fit: contain;
+}
+
+.producto-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: hotpink;
+  color: white;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  z-index: 2;
+}
+
+.producto-badge.bg-danger {
+  background-color: #dc3545;
+}
+
+.producto-info {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.producto-nombre {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #333;
+  height: 40px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.producto-precio {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.precio-original {
+  text-decoration: line-through;
+  color: #999;
+  font-size: 0.9rem;
+  margin-right: 5px;
+}
+
+.precio-oferta {
+  color: #e83e8c;
+}
+
+.producto-acciones {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+/* Estilo específico para botones centrados */
+.botones-centrados {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-producto {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-detalles {
+  background-color: #f8f9fa;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+.btn-detalles:hover {
+  background-color: #e9ecef;
+}
+
+.btn-agregar {
+  background-color: hotpink;
+  color: white;
+}
+
+.btn-agregar:hover {
+  background-color: #d63384;
+}
+
+.btn-favorito {
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-right: 5px;
+}
+
+.btn-favorito:hover {
+  color: hotpink;
+  transform: scale(1.1);
+}
+
+/* */
+.acciones-producto button {
+  border: none;
+  background: #f8f9fa;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.acciones-producto button:hover {
+  background-color: #e9ecef;
+  transform: scale(1.1);
+}
+
+#select-categorias:focus,
+#input-busqueda:focus {
+  border-color: #e83e8c !important;
+  box-shadow: 0 0 0 0.2rem rgba(232, 62, 140, 0.25);
+}
+
+.input-group .form-select,
+.input-group .form-control {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}

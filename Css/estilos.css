@@ -1,0 +1,60 @@
+@import url("./Componentes/header.css");
+@import url("./Componentes/navbar.css");
+@import url("./Componentes/carousel.css");
+@import url("./Componentes/footer.css");
+@import url("./Componentes/secciones.css");
+@import url("./Componentes/responsive.css");
+
+/* @import url("./Componentes/layout.css"); */
+@import url("./Componentes/index.css");
+@import url("./Componentes/cuenta.css");
+@import url("./Componentes/productos.css");
+@import url("./Componentes/contacto.css");
+@import url("./Componentes/promos.css");
+@import url("./Componentes/carrito.css");
+/* @import url("./Componentes/error.css"); */
+/* @import url("./Componentes/recompensas.css"); */
+@import url('./Componentes/page.css');
+@import url("./Componentes/toast.css");
+@import url("./Componentes/checkout.css");
+@import url("./Componentes/whatsapp-button.css");
+@import url("./Componentes/carrusel-productos.css");
+@import url("./Componentes/detalle.css");
+
+
+
+
+body {
+  background-color: #fff0f5 !important;
+  /* #FAD1E1 */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  right: 0;
+  left: 0;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  padding-top: 90px;
+  /* Altura del header fijo */
+}
+
+header {
+  height: 90px;
+}
+
+footer {
+  margin-top: auto;
+}

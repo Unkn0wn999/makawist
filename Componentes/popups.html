@@ -1,0 +1,134 @@
+<!-- Login Popup -->
+<div id="loginPopupOverlay" class="login-popup-overlay" style="display:none;">
+    <div class="login-popup">
+        <span id="closeLoginPopup" class="close-btn">&times;</span>
+        <h3>Iniciar sesión</h3>
+
+        <form method="POST" name="login" id="loginForm">
+            <div class="error-msg" id="login-errores"></div>
+
+            <input type="email" name="correo" id="login-correo" placeholder="Correo electrónico" required />
+            <div class="error-msg" id="login-error-correo"></div>
+
+            <div class="input-group">
+                <input type="password" name="password" id="login-password" placeholder="Contraseña" required
+                    class="form-control" autocomplete="current-password" />
+                <button type="button" class="btn btn-outline-secondary toggle-pass" data-target="login-password"
+                    tabindex="-1">
+                    <i class="bi bi-eye-fill"></i>
+                </button>
+            </div>
+            <div class="error-msg" id="login-error-password"></div>
+
+            <div class="forgot-password">
+                <a href="#" id="forgot-password-link">¿Olvidaste tu contraseña?</a>
+            </div>
+
+            <button type="submit" name="login">Iniciar sesión</button>
+        </form>
+
+        <p>¿No tienes una cuenta?</p>
+        <button type="button" class="register-btn">Regístrate</button>
+    </div>
+</div>
+
+<!-- Register Popup -->
+<div id="registerPopupOverlay" class="login-popup-overlay" style="display:none;">
+    <div class="login-popup">
+        <span id="closeRegisterPopup" class="close-btn">&times;</span>
+        <h3>Crear cuenta</h3>
+        <form method="POST" name="registro">
+            <input type="text" name="nombres" id="registro-nombres" placeholder="Nombres" required />
+            <div class="error-msg" id="error-nombres"></div>
+
+            <input type="text" name="apellidos" id="registro-apellidos" placeholder="Apellidos" required />
+            <div class="error-msg" id="error-apellidos"></div>
+
+            <select name="tipoDocumento" id="registro-tipoDocumento" required>
+                <option value="">Tipo Documento</option>
+                <option value="DNI">DNI</option>
+                <option value="RUC">RUC</option>
+                <option value="CE">CE</option>
+            </select>
+            <div class="error-msg" id="error-tipoDocumento"></div>
+
+            <input type="text" name="numeroDocumento" id="registro-documento" placeholder="N° Documento" required />
+            <div class="error-msg" id="error-documento"></div>
+
+            <input type="email" name="correo" id="registro-correo" placeholder="Correo electrónico" required />
+            <div class="error-msg" id="error-correo"></div>
+
+            <div class="input-group">
+                <input type="password" name="password" id="registro-password" placeholder="Contraseña" required
+                    class="form-control" autocomplete="new-password" />
+                <button type="button" class="btn btn-outline-secondary toggle-pass" data-target="registro-password">
+                    <i class="bi bi-eye-fill"></i>
+                </button>
+            </div>
+            <div class="error-msg" id="error-password"></div>
+
+
+            <button type="submit" name="registro">Crear cuenta</button>
+        </form>
+    </div>
+</div>
+
+<!-- Recuperación de Contraseña Popup - Solicitud -->
+<div id="forgotPasswordPopupOverlay" class="login-popup-overlay" style="display:none;">
+    <div class="login-popup">
+        <span id="closeForgotPasswordPopup" class="close-btn">&times;</span>
+        <h3>Recuperar Contraseña</h3>
+        
+        <form method="POST" name="forgotPassword" id="forgotPasswordForm">
+            <div class="error-msg" id="forgot-password-errores"></div>
+            <p class="form-description">Ingresa tu correo electrónico y te enviaremos un enlace para restablecer tu contraseña.</p>
+            
+            <input type="email" name="correo" id="forgot-password-correo" placeholder="Correo electrónico" required />
+            <div class="error-msg" id="forgot-password-error-correo"></div>
+            
+            <button type="submit" name="forgotPassword">Enviar enlace</button>
+        </form>
+        
+        <p class="mt-3">¿Recordaste tu contraseña?</p>
+        <button type="button" class="back-to-login-btn">Volver al inicio de sesión</button>
+    </div>
+</div>
+
+<!-- Recuperación de Contraseña Popup - Reset -->
+<div id="resetPasswordPopupOverlay" class="login-popup-overlay" style="display:none;">
+    <div class="login-popup">
+        <span id="closeResetPasswordPopup" class="close-btn">&times;</span>
+        <h3>Crear Nueva Contraseña</h3>
+        
+        <form method="POST" name="resetPassword" id="resetPasswordForm">
+            <div class="error-msg" id="reset-password-errores"></div>
+            <p class="form-description">Ingresa tu nueva contraseña.</p>
+            
+            <input type="hidden" id="reset-token" name="token" />
+            
+            <div class="input-group">
+                <input type="password" name="password" id="reset-password" placeholder="Nueva contraseña" required class="form-control" autocomplete="new-password" />
+                <button type="button" class="btn btn-outline-secondary toggle-pass" data-target="reset-password" tabindex="-1">
+                    <i class="bi bi-eye-fill"></i>
+                </button>
+            </div>
+            <div class="error-msg" id="reset-password-error-password"></div>
+            
+            <div class="input-group">
+                <input type="password" name="confirmPassword" id="reset-confirm-password" placeholder="Confirmar contraseña" required class="form-control" autocomplete="new-password" />
+                <button type="button" class="btn btn-outline-secondary toggle-pass" data-target="reset-confirm-password" tabindex="-1">
+                    <i class="bi bi-eye-fill"></i>
+                </button>
+            </div>
+            <div class="error-msg" id="reset-password-error-confirm"></div>
+            
+            <button type="submit" name="resetPassword">Cambiar contraseña</button>
+        </form>
+    </div>
+</div>
+
+<!-- Toast de éxito -->
+<div id="toast-exito" class="toast-notificacion" style="display: none;">
+    <i class="bi bi-check-circle-fill me-2"></i>
+    <span id="mensaje-toast"></span>
+</div>

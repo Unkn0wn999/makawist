@@ -1,0 +1,95 @@
+/* Estilo principal hotpink */
+.bg-custom-primary {
+  background: linear-gradient(180deg, hotpink 10%, #f06292 100%) !important;
+}
+
+/* Sidebar */
+#wrapper {
+  min-height: 100vh;
+}
+
+#sidebar-wrapper {
+  width: 250px;
+}
+
+#sidebar-wrapper .sidebar-heading {
+  height: 64px;
+}
+
+#sidebar-wrapper .list-group-item {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  font-size: 0.95rem;
+  font-weight: 400;
+  border: none;
+}
+
+/* Navbar para alineación */
+.navbar-custom {
+  height: 63px;
+  padding-left: 250px;
+  /* igual al sidebar */
+  background: linear-gradient(180deg, hotpink) !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Separador visual bajo el navbar */
+.navbar-separator {
+  height: 2px;
+  background-color: white;
+  box-shadow: darkgrey;
+
+}
+
+/* Estilo de dropdown admin */
+.admin-dropdown .btn-admin-menu {
+  background-color: white;
+  border-radius: 30px;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.admin-dropdown .btn-admin-menu:hover {
+  background-color: #f8f9fa;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.admin-dropdown .btn-admin-menu i {
+  font-size: 1.2rem;
+  color: hotpink;
+  margin-right: 8px;
+}
+
+.admin-dropdown .btn-admin-menu span {
+  font-weight: 600;
+  color: #333;
+}
+
+/* Estilo para los items del dropdown */
+.admin-dropdown .dropdown-item {
+  padding: 0.5rem 1rem;
+  transition: background-color 0.2s ease;
+}
+
+.admin-dropdown .dropdown-item:hover {
+  background-color: #f8f9fa;
+}
+
+.admin-dropdown .dropdown-item i {
+  color: hotpink;
+}
+
+/* Suaviza la transición entre contenidos */
+#dashboard-content {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+#dashboard-content.fade-out {
+  opacity: 0;
+}

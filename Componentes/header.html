@@ -1,0 +1,68 @@
+<header class="header-principal">
+  <div class="banner">
+    <div class="flex-grow-1"></div>
+
+    <div class="logo text-center">
+      <a href="index.html">
+        <img src="Imagenes/Makawi_BannerWhite.png" alt="BannerMakawi" class="img-fluid">
+      </a>
+    </div>
+
+    <div class="icons d-flex align-items-center gap-4 position-relative" style="margin-right: 1rem;">
+      <!-- Menú desplegable de usuario -->
+      <div id="menu-usuario"
+        class="dropdown-menu-usuario position-absolute top-100 end-0 mt-2 bg-white shadow rounded px-3 py-2"
+        style="display: none; z-index: 999;">
+        <ul class="list-unstyled mb-0">
+          <li><a href="cuenta.html" class="dropdown-item"><i class="bi bi-person-circle me-2"></i>Cuenta</a></li>
+          <li><a href="favoritos.html" class="dropdown-item"><i class="bi bi-heart-fill me-2"></i>Favoritos</a></li>
+          <li><a href="#" id="cerrar-sesion" class="dropdown-item text-danger"><i
+                class="bi bi-box-arrow-right me-2"></i>Cerrar sesión</a></li>
+        </ul>
+      </div>
+
+      <!-- Icono Usuario -->
+      <a href="#" id="icono-usuario" class="text-white fs-5 position-relative">
+        <i class="bi bi-person-circle" title="Cuenta"></i>
+      </a>
+
+      <!-- Icono Carrito -->
+      <a href="carrito.html" class="text-white fs-5 position-relative">
+        <i class="bi bi-bag-heart-fill" title="Carrito"></i>
+        <span id="carrito-contador"
+          class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+          style="font-size: 0.65rem;">0</span>
+      </a>
+
+      <!-- Icono Recompensas -->
+      <a href="recompensas.html" class="text-white fs-5 position-relative">
+        <i class="bi bi-gift-fill" title="Recompensas"></i>
+      </a>
+    </div>
+
+
+  </div>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMakawi"
+        aria-controls="navbarMakawi" aria-expanded="false" aria-label="Toggle navigation">
+        <div class="menu-icon">
+          <span></span><span></span><span></span>
+        </div>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarMakawi">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+          <li class="nav-item me-4"><a class="nav-link text-pink" href="index.html"><i
+                class="bi bi-house-door-fill"></i> INICIO</a></li>
+          <li class="nav-item me-4"><a class="nav-link text-pink" href="productos.html"><i class="bi bi-bag-fill"></i>
+              PRODUCTOS</a></li>
+          <li class="nav-item me-4"><a class="nav-link text-pink" href="contacto.html"><i
+                class="bi bi-telephone-fill"></i> CONTACTO</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script src="Js/toast.js"></script>

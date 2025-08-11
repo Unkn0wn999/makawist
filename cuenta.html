@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+
+  <head>
+    <meta charset="UTF-8" />
+    <title>Makawi Store Cix</title>
+    <link rel="icon" type="image/png" href="imagenes/MakawiLogoBg.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+    <link rel="stylesheet" href="Css/estilos.css" />
+  </head>
+
+  <body class="d-flex flex-column min-vh-100">
+
+    <div id="header-placeholder"></div>
+
+    <main class="flex-grow-1">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-3 cuenta-sidebar d-flex flex-column">
+            <button onclick="mostrarSeccion('perfil')">
+              <i class="bi bi-person-circle"></i> Mi perfil
+            </button>
+            <button onclick="mostrarSeccion('pedidos')">
+              <i class="bi bi-bag-check-fill"></i> Mis compras
+            </button>
+            <button onclick="mostrarSeccion('direccion')">
+              <i class="bi bi-geo-alt-fill"></i> Direcciones
+            </button>
+            <button onclick="mostrarSeccion('metodos')">
+              <i class="bi bi-credit-card-2-back-fill"></i> Métodos de pago
+            </button>
+            <button onclick="mostrarSeccion('seguridad')">
+              <i class="bi bi-shield-lock-fill"></i> Seguridad
+            </button>
+          </div>
+
+          <div class="col-md-9 cuenta-content">
+
+            <!-- PERFIL -->
+            <div id="perfil" class="cuenta-section active">
+              <h3>Mi perfil</h3>
+              <p>Datos personales del usuario.</p>
+              <div class="form-perfil mt-4">
+                <form id="formPerfil" class="row g-3">
+                  <div class="col-md-6">
+                    <label for="perfil-nombres" class="form-label">Nombres</label>
+                    <input type="text" class="form-control" id="perfil-nombres" disabled />
+                  </div>
+                  <div class="col-md-6">
+                    <label for="perfil-apellidos" class="form-label">Apellidos</label>
+                    <input type="text" class="form-control" id="perfil-apellidos" disabled />
+                  </div>
+                  <div class="col-md-6">
+                    <label for="perfil-correo" class="form-label">Correo Electrónico</label>
+                    <input type="email" class="form-control" id="perfil-correo" disabled />
+                  </div>
+                  <div class="col-md-3">
+                    <label for="perfil-tipoDocumento" class="form-label">Tipo Documento</label>
+                    <input type="text" class="form-control" id="perfil-tipoDocumento" disabled />
+                  </div>
+                  <div class="col-md-3">
+                    <label for="perfil-numeroDocumento" class="form-label">N.º Documento</label>
+                    <input type="text" class="form-control" id="perfil-numeroDocumento" disabled />
+                  </div>
+                  <div class="col-md-6">
+                    <label for="perfil-fechaRegistro" class="form-label">Fecha de Registro</label>
+                    <input type="text" class="form-control" id="perfil-fechaRegistro" disabled />
+                  </div>
+                  <div class="col-12 d-flex justify-content-end">
+                    <button type="button" id="btnEditarPerfil" class="btn btn-outline-primary">Editar</button>
+                    <button type="submit" id="btnGuardarPerfil" class="btn btn-success ms-2" disabled
+                      style="cursor: not-allowed">Guardar</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <!-- PEDIDOS -->
+            <div id="pedidos" class="cuenta-section">
+              <h3>Mis pedidos</h3>
+              <p>Historial de compras.</p>
+            </div>
+
+            <!-- DIRECCIONES -->
+            <div id="direccion" class="cuenta-section">
+              <h3>Mis Direcciones</h3>
+              <div class="contenedor-direcciones text-center"></div>
+              <button class="btn btn-success mt-2" id="btnAgregarDireccion" onclick="abrirPopupDireccion()">Agregar
+                Dirección</button>
+
+              <div id="popup-direccion" class="popup-overlay" style="display: none;">
+                <div class="popup-box">
+                  <h5 class="text-center mb-3">Agregar Dirección</h5>
+                  <form id="formDireccion">
+                    <div class="mb-2"><input type="text" name="Direccion" class="form-control" placeholder="Dirección"
+                        required /></div>
+                    <div class="mb-2"><input type="text" name="Ciudad" class="form-control" placeholder="Ciudad" />
+                    </div>
+                    <div class="mb-2">
+                      <select name="Departamento" id="departamento-select" class="form-control" required>
+                        <option value="" disabled selected>Seleccione un departamento</option>
+                        <option value="Amazonas">Amazonas</option>
+                        <option value="Áncash">Áncash</option>
+                        <option value="Apurímac">Apurímac</option>
+                        <option value="Arequipa">Arequipa</option>
+                        <option value="Ayacucho">Ayacucho</option>
+                        <option value="Cajamarca">Cajamarca</option>
+                        <option value="Callao">Callao</option>
+                        <option value="Cusco">Cusco</option>
+                        <option value="Huancavelica">Huancavelica</option>
+                        <option value="Huánuco">Huánuco</option>
+                        <option value="Ica">Ica</option>
+                        <option value="Junín">Junín</option>
+                        <option value="La Libertad">La Libertad</option>
+                        <option value="Lambayeque">Lambayeque</option>
+                        <option value="Lima">Lima</option>
+                        <option value="Loreto">Loreto</option>
+                        <option value="Madre de Dios">Madre de Dios</option>
+                        <option value="Moquegua">Moquegua</option>
+                        <option value="Pasco">Pasco</option>
+                        <option value="Piura">Piura</option>
+                        <option value="Puno">Puno</option>
+                        <option value="San Martín">San Martín</option>
+                        <option value="Tacna">Tacna</option>
+                        <option value="Tumbes">Tumbes</option>
+                        <option value="Ucayali">Ucayali</option>
+                      </select>
+                    </div>
+
+                    <div class="mb-2"><input type="text" name="CodigoPostal" class="form-control"
+                        placeholder="Código Postal" /></div>
+                    <div class="mb-2"><input type="text" name="Referencia" class="form-control"
+                        placeholder="Referencia" /></div>
+                    <div class="d-flex justify-content-end gap-2 mt-3">
+                      <button type="submit" class="btn btn-success">Guardar</button>
+                      <button type="button" id="cancelarDireccion" onclick="cerrarPopupDireccion()"
+                        class="btn btn-secondary">Cancelar</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            <!-- MÉTODOS DE PAGO -->
+            <div id="metodos" class="cuenta-section">
+              <h3>Tarjetas</h3>
+              <div class="contenedor-metodos text-center"></div>
+              <button class="btn btn-success" id="btnAgregarTarjeta">Agregar nuevo</button>
+              <div id="lista-tarjetas" class="mt-4"></div>
+
+              <div id="popup-tarjeta" class="popup-overlay" style="display: none;">
+                <div class="popup-box">
+                  <h5 class="text-center mb-3">Agregar Tarjeta</h5>
+                  <form id="formTarjeta">
+                    <div class="mb-3"><input type="text" name="TitularTarjeta" id="TitularTarjeta" class="form-control"
+                        placeholder="Titular Tarjeta" required></div>
+                    <div class="mb-3 position-relative">
+                      <input type="text" name="NumeroTarjeta" id="NumeroTarjeta" class="form-control"
+                        placeholder="Número de Tarjeta" maxlength="19" required />
+                      <span id="iconoTarjeta" class="position-absolute top-50 end-0 translate-middle-y pe-3"></span>
+                    </div>
+                    <div class="mb-3"><input type="text" name="FechaExpiracion" id="FechaExpiracion"
+                        class="form-control" placeholder="MM/AAAA" maxlength="7" required /></div>
+                    <div class="mb-3"><input type="text" name="CVV" class="form-control" placeholder="CVV" required />
+                    </div>
+                    <div class="d-flex justify-content-end gap-2 mt-3">
+                      <button type="submit" class="btn btn-success">Guardar</button>
+                      <button type="button" id="cancelarTarjeta" onclick="cerrarPopupTarjeta()"
+                        class="btn btn-secondary">Cancelar</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            <!-- SEGURIDAD -->
+            <section id="seguridad" class="cuenta-section">
+              <h3>Cambiar Contraseña</h3>
+              <form id="formCambioClave" class="mt-4" style="max-width: 500px;">
+                <div class="mb-3">
+                  <label for="claveActual" class="form-label">Contraseña actual</label>
+                  <input type="password" class="form-control" id="claveActual" name="claveActual" required />
+                  <div class="invalid-feedback" id="error-actual"></div>
+                </div>
+                <div class="mb-3">
+                  <label for="nuevaClave" class="form-label">Nueva contraseña</label>
+                  <input type="password" class="form-control" id="nuevaClave" name="nuevaClave" required />
+                  <div class="invalid-feedback" id="error-nueva"></div>
+                </div>
+                <div class="mb-3">
+                  <label for="confirmarClave" class="form-label">Confirmar nueva contraseña</label>
+                  <input type="password" class="form-control" id="confirmarClave" name="confirmarClave" required />
+                  <div class="invalid-feedback" id="error-confirmar"></div>
+                </div>
+                <button type="submit" class="btn btn-success">Actualizar Contraseña</button>
+              </form>
+            </section>
+
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <!-- Toast -->
+    <div id="toast-perfil" class="toast-notificacion" style="display: none;">
+      <i class="bi bi-info-circle-fill me-2"></i>
+      <span id="mensaje-perfil-toast"></span>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="Js/layout-loader.js"></script>
+    <script src="Js/toast.js"></script>
+    <script src="Js/perfi.js"></script>
+    <script src="Js/tarjetas.js"></script>
+    <script src="Js/direcciones.js"></script>
+    <script src="Js/pedidos.js"></script>
+
+    <script>
+      if (!localStorage.getItem("token")) {
+        window.location.href = "index.html";
+      }
+
+      function mostrarSeccion(id) {
+        document.querySelectorAll(".cuenta-section").forEach((sec) => sec.classList.remove("active"));
+        document.getElementById(id).classList.add("active");
+      }
+
+      function cerrarPopupDireccion() {
+        document.getElementById("popup-direccion").style.display = "none";
+        document.getElementById("formDireccion").reset();
+      }
+
+      function abrirPopupDireccion() {
+        const popup = document.getElementById("popup-direccion");
+        const form = document.getElementById("formDireccion");
+        form.reset();
+        popup.style.display = "flex";
+        popup.style.justifyContent = "center";
+        popup.style.alignItems = "center";
+      }
+    </script>
+
+    <script>
+      document.getElementById("formCambioClave").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const actual = document.getElementById("claveActual");
+        const nueva = document.getElementById("nuevaClave");
+        const confirmar = document.getElementById("confirmarClave");
+        let valid = true;
+        [actual, nueva, confirmar].forEach((input) => input.classList.remove("is-invalid", "is-valid"));
+        ["actual", "nueva", "confirmar"].forEach((campo) => {
+          document.getElementById("error-" + campo).textContent = "";
+        });
+
+        if (nueva.value.length < 6) {
+          document.getElementById("error-nueva").textContent = "La nueva contraseña debe tener al menos 6 caracteres.";
+          nueva.classList.add("is-invalid");
+          valid = false;
+        } else if (nueva.value === actual.value) {
+          document.getElementById("error-nueva").textContent = "La nueva contraseña no puede ser igual a la actual.";
+          nueva.classList.add("is-invalid");
+          valid = false;
+        }
+
+        if (nueva.value !== confirmar.value) {
+          document.getElementById("error-confirmar").textContent = "Las contraseñas no coinciden.";
+          confirmar.classList.add("is-invalid");
+          valid = false;
+        }
+
+        if (!valid) return;
+
+        try {
+          const res = await fetch("/api/usuarios/cambiar-clave", {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+            body: JSON.stringify({ actual: actual.value, nueva: nueva.value }),
+          });
+
+          const data = await res.json();
+
+          if (!res.ok) {
+            document.getElementById("error-actual").textContent = data.mensaje || "Error al actualizar";
+            actual.classList.add("is-invalid");
+            mostrarToast(data.mensaje || "Error al actualizar contraseña", "error");
+            return;
+          }
+
+          mostrarToast("Contraseña actualizada correctamente", "success");
+          [actual, nueva, confirmar].forEach((input) => {
+            input.value = "";
+            input.classList.remove("is-invalid");
+            input.classList.add("is-valid");
+          });
+        } catch (err) {
+          document.getElementById("error-actual").textContent = err.message;
+          actual.classList.add("is-invalid");
+          mostrarToast(err.message, "error");
+        }
+      });
+    </script>
+
+  </body>
+
+</html>

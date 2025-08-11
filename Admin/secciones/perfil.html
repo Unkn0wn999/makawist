@@ -1,0 +1,275 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <div class="card shadow mb-4">
+        <div class="card-header py-3 d-flex align-items-center">
+          <i class="bi bi-person-circle me-2 text-primary"></i>
+          <h6 class="m-0 font-weight-bold text-primary">Mi Perfil</h6>
+        </div>
+        <div class="card-body">
+          <div class="form-perfil mt-2">
+            <form id="formPerfilAdmin" class="row g-3">
+              <div class="col-md-6">
+                <label for="perfil-nombres" class="form-label">Nombres</label>
+                <input type="text" class="form-control" id="perfil-nombres" disabled />
+              </div>
+              <div class="col-md-6">
+                <label for="perfil-apellidos" class="form-label">Apellidos</label>
+                <input type="text" class="form-control" id="perfil-apellidos" disabled />
+              </div>
+              <div class="col-md-6">
+                <label for="perfil-correo" class="form-label">Correo Electrónico</label>
+                <input type="email" class="form-control" id="perfil-correo" disabled />
+              </div>
+              <div class="col-md-3">
+                <label for="perfil-tipoDocumento" class="form-label">Tipo Documento</label>
+                <input type="text" class="form-control" id="perfil-tipoDocumento" disabled />
+              </div>
+              <div class="col-md-3">
+                <label for="perfil-numeroDocumento" class="form-label">N.º Documento</label>
+                <input type="text" class="form-control" id="perfil-numeroDocumento" disabled />
+              </div>
+              <div class="col-md-6">
+                <label for="perfil-fechaRegistro" class="form-label">Fecha de Registro</label>
+                <input type="text" class="form-control" id="perfil-fechaRegistro" disabled />
+              </div>
+              <div class="col-12 d-flex justify-content-end">
+                <button type="button" id="btnEditarPerfil" class="btn btn-outline-primary">Editar</button>
+                <button type="submit" id="btnGuardarPerfil" class="btn btn-success ms-2" disabled
+                  style="cursor: not-allowed">Guardar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="card shadow mb-4">
+        <div class="card-header py-3 d-flex align-items-center">
+          <i class="bi bi-shield-lock-fill me-2 text-primary"></i>
+          <h6 class="m-0 font-weight-bold text-primary">Cambiar Contraseña</h6>
+        </div>
+        <div class="card-body">
+          <form id="formCambioClave" class="mt-2" style="max-width: 500px;">
+            <div class="mb-3">
+              <label for="claveActual" class="form-label">Contraseña actual</label>
+              <input type="password" class="form-control" id="claveActual" name="claveActual" required />
+              <div class="invalid-feedback" id="error-actual"></div>
+            </div>
+            <div class="mb-3">
+              <label for="nuevaClave" class="form-label">Nueva contraseña</label>
+              <input type="password" class="form-control" id="nuevaClave" name="nuevaClave" required />
+              <div class="invalid-feedback" id="error-nueva"></div>
+            </div>
+            <div class="mb-3">
+              <label for="confirmarClave" class="form-label">Confirmar nueva contraseña</label>
+              <input type="password" class="form-control" id="confirmarClave" name="confirmarClave" required />
+              <div class="invalid-feedback" id="error-confirmar"></div>
+            </div>
+            <button type="submit" class="btn btn-success">Actualizar Contraseña</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Toast para notificaciones -->
+<div id="toast-perfil" class="toast-notificacion" style="display: none;">
+  <i class="bi bi-info-circle-fill me-2"></i>
+  <span id="mensaje-perfil-toast"></span>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Cargar datos del perfil
+    cargarDatosPerfil();
+
+    // Configurar formulario de cambio de contraseña
+    configurarFormularioCambioClave();
+
+    // Configurar botones de edición
+    configurarBotonesEdicion();
+  });
+
+  // Esta función carga los datos del perfil en el formulario
+  function cargarDatosPerfil() {
+    try {
+      // Suponiendo que 'usuario' está disponible en el contexto global o lo traes con fetch
+      const usuario = window.usuario; // O reemplaza con fetch o una función que lo obtenga
+
+      // Validar que usuario existe
+      if (!usuario) throw new Error("No se encontró el objeto 'usuario'");
+
+      // Llenar campos del formulario
+      document.getElementById('perfil-nombres').value = usuario.Nombres || '';
+      document.getElementById('perfil-apellidos').value = usuario.Apellidos || '';
+      document.getElementById('perfil-correo').value = usuario.Correo || '';
+      document.getElementById('perfil-tipoDocumento').value = usuario.TipoDocumento || 'DNI';
+      document.getElementById('perfil-numeroDocumento').value = usuario.NumeroDocumento || '';
+
+      // Verificar si FechaRegistro existe y formatearla
+      if (usuario.FechaRegistro) {
+        try {
+          document.getElementById('perfil-fechaRegistro').value = new Date(usuario.FechaRegistro).toLocaleDateString();
+        } catch (e) {
+          console.error('Error al formatear fecha:', e);
+          document.getElementById('perfil-fechaRegistro').value = usuario.FechaRegistro;
+        }
+      } else {
+        document.getElementById('perfil-fechaRegistro').value = '';
+      }
+
+    } catch (error) {
+      console.error('Error al cargar perfil:', error);
+      mostrarToast('Error al cargar datos del perfil', 'error');
+    }
+  }
+
+  // Resto del código (ya lo tienes bien)
+  function configurarBotonesEdicion() {
+    const btnEditar = document.getElementById('btnEditarPerfil');
+    const btnGuardar = document.getElementById('btnGuardarPerfil');
+    const campos = document.querySelectorAll('#formPerfilAdmin input');
+
+    btnEditar.addEventListener('click', () => {
+      // Habilitar campos excepto correo y fecha
+      campos.forEach(campo => {
+        if (campo.id !== 'perfil-correo' && campo.id !== 'perfil-fechaRegistro') {
+          campo.disabled = false;
+        }
+      });
+
+      btnGuardar.disabled = false;
+      btnGuardar.style.cursor = 'pointer';
+    });
+
+    document.getElementById('formPerfilAdmin').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const token = localStorage.getItem('token');
+      if (!token) return;
+
+      const datosActualizados = {
+        Nombres: document.getElementById('perfil-nombres').value,
+        Apellidos: document.getElementById('perfil-apellidos').value,
+        TipoDocumento: document.getElementById('perfil-tipoDocumento').value,
+        NumeroDocumento: document.getElementById('perfil-numeroDocumento').value
+      };
+
+      try {
+        const res = await fetch('/api/usuarios/perfil', {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+          },
+          body: JSON.stringify(datosActualizados)
+        });
+
+        if (!res.ok) throw new Error('Error al actualizar perfil');
+
+        // Deshabilitar campos
+        campos.forEach(campo => {
+          campo.disabled = true;
+        });
+
+        btnGuardar.disabled = true;
+        btnGuardar.style.cursor = 'not-allowed';
+
+        mostrarToast('Perfil actualizado correctamente', 'success');
+
+      } catch (error) {
+        console.error('Error:', error);
+        mostrarToast('Error al actualizar perfil', 'error');
+      }
+    });
+  }
+
+  function configurarFormularioCambioClave() {
+    document.getElementById('formCambioClave').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const actual = document.getElementById('claveActual');
+      const nueva = document.getElementById('nuevaClave');
+      const confirmar = document.getElementById('confirmarClave');
+
+      let valid = true;
+      [actual, nueva, confirmar].forEach(input => input.classList.remove('is-invalid', 'is-valid'));
+      ['actual', 'nueva', 'confirmar'].forEach(campo => {
+        document.getElementById('error-' + campo).textContent = '';
+      });
+
+      if (nueva.value.length < 6) {
+        document.getElementById('error-nueva').textContent = 'La nueva contraseña debe tener al menos 6 caracteres.';
+        nueva.classList.add('is-invalid');
+        valid = false;
+      } else if (nueva.value === actual.value) {
+        document.getElementById('error-nueva').textContent = 'La nueva contraseña no puede ser igual a la actual.';
+        nueva.classList.add('is-invalid');
+        valid = false;
+      }
+
+      if (nueva.value !== confirmar.value) {
+        document.getElementById('error-confirmar').textContent = 'Las contraseñas no coinciden.';
+        confirmar.classList.add('is-invalid');
+        valid = false;
+      }
+
+      if (!valid) return;
+
+      try {
+        const token = localStorage.getItem('token');
+        if (!token) throw new Error('No hay sesión activa');
+
+        const res = await fetch('/api/usuarios/cambiar-clave', {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+          },
+          body: JSON.stringify({ actual: actual.value, nueva: nueva.value })
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          document.getElementById('error-actual').textContent = data.mensaje || 'Error al actualizar';
+          actual.classList.add('is-invalid');
+          mostrarToast(data.mensaje || 'Error al actualizar contraseña', 'error');
+          return;
+        }
+
+        mostrarToast('Contraseña actualizada correctamente', 'success');
+        [actual, nueva, confirmar].forEach(input => {
+          input.value = '';
+          input.classList.remove('is-invalid');
+          input.classList.add('is-valid');
+        });
+
+      } catch (err) {
+        document.getElementById('error-actual').textContent = err.message;
+        actual.classList.add('is-invalid');
+        mostrarToast(err.message, 'error');
+      }
+    });
+  }
+
+  function mostrarToast(mensaje, tipo = 'info') {
+    const toast = document.getElementById('toast-perfil');
+    const mensajeElement = document.getElementById('mensaje-perfil-toast');
+
+    toast.className = 'toast-notificacion';
+    toast.classList.add(`toast-${tipo}`);
+    mensajeElement.textContent = mensaje;
+
+    toast.style.display = 'flex';
+
+    setTimeout(() => {
+      toast.style.display = 'none';
+    }, 3000);
+  }
+</script>

@@ -1,0 +1,1385 @@
+:root {
+    --primary-color: hotpink;
+    --secondary-color: #e91e63;
+    --text-color: #333;
+    --light-gray: #f8f9fa;
+    --border-color: #e0e0e0;
+    --success-color: #28a745;
+    --error-color: #dc3545;
+    --slider-color: hotpink;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    color: var(--text-color);
+    box-sizing: border-box;
+    min-height: 100vh;
+    padding-bottom: 80px;
+    /* Espacio para el footer fijo */
+}
+
+/* Asegurar que todos los elementos respeten el box-sizing */
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+/* Personalización de la barra de desplazamiento */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
+}
+
+/* Media queries para responsividad */
+@media (max-width: 1250px) {
+    .checkout-container {
+        width: 98%;
+        margin-left: auto;
+        margin-right: auto;
+        min-height: 800px;
+        margin-bottom: 10rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .checkout-content {
+        grid-template-columns: 1fr;
+    }
+
+    .checkout-summary {
+        grid-column: 1;
+        margin-top: 2rem;
+    }
+}
+
+.checkout-container {
+    width: 100%;
+    max-width: 1200px;
+    min-height: 100vh;
+    height: auto;
+    margin: 6rem auto 0 auto;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    /* Nada se sale visualmente */
+    padding: 2rem 1rem 4rem 1rem;
+    /* padding-bottom razonable */
+    position: relative;
+    z-index: 1;
+}
+
+/* Barra de progreso moderna */
+.progress-container {
+    position: relative;
+    margin-bottom: 3rem;
+}
+
+.progress-bar {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: var(--border-color);
+    z-index: 1;
+}
+
+.progress-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: var(--primary-color);
+    transition: width 0.5s ease;
+    z-index: 2;
+}
+
+.progress-steps {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    z-index: 3;
+}
+
+.progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.step-icon-container {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: white;
+    border: 2px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.step-icon-container i {
+    font-size: 1.5rem;
+    color: #aaa;
+    transition: all 0.3s ease;
+}
+
+.progress-step.active .step-icon-container {
+    border-color: var(--primary-color);
+    background-color: rgba(255, 105, 180, 0.1);
+}
+
+.progress-step.active .step-icon-container i {
+    color: var(--primary-color);
+}
+
+.progress-step.completed .step-icon-container {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.progress-step.completed .step-icon-container i {
+    color: white;
+}
+
+.step-label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #777;
+    transition: all 0.3s ease;
+}
+
+.progress-step.active .step-label,
+.progress-step.completed .step-label {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* Contenido principal */
+.checkout-content {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 2rem;
+    margin-top: 1rem;
+    overflow: visible !important;
+    position: relative;
+    padding-bottom: 0;
+}
+
+/* Estilos para métodos de pago */
+.payment-methods {
+    overflow: visible;
+    /* Asegurar que los métodos de pago no se corten */
+    margin-bottom: 1.5rem;
+}
+
+/* Pasos del checkout */
+.checkout-steps {
+    grid-column: 1;
+    position: relative;
+    /* Añadir posición relativa */
+    overflow: auto;
+    /* Permitir scroll cuando sea necesario */
+    max-height: 600px;
+}
+
+/* Personalización específica de la barra de desplazamiento para checkout-steps */
+.checkout-steps::-webkit-scrollbar {
+    width: 10px;
+    /* Ancho ligeramente mayor para mejor visibilidad */
+}
+
+.checkout-steps::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.checkout-steps::-webkit-scrollbar-thumb {
+    background: hotpink;
+    /* Color explícito para asegurar que sea hotpink */
+    border-radius: 10px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+
+.checkout-steps::-webkit-scrollbar-thumb:hover {
+    background: #ff369b;
+    /* Un tono más oscuro de hotpink al hacer hover */
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+
+/* Configuración para mostrar scrollbar */
+.checkout-steps {
+    max-height: 500px;
+    /* Altura máxima para forzar el scrollbar */
+    overflow-y: scroll;
+    /* Forzar la barra de desplazamiento vertical siempre visible */
+    padding-right: 10px;
+    /* Espacio para la barra de desplazamiento */
+}
+
+.step-content {
+    display: none;
+    background-color: white;
+    border-radius: 10px;
+    padding: 2rem;
+    animation: fadeIn 0.5s ease;
+    padding-bottom: 3rem;
+    /* Más espacio inferior */
+    min-height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.step-content.active {
+    display: block;
+    position: relative;
+    /* Añadir posición relativa */
+    z-index: 1;
+    /* Asegurar que esté por encima de otros elementos */
+    min-height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+}
+
+.step-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+}
+
+/* Resumen lateral */
+.checkout-summary {
+    grid-column: 2;
+    background-color: var(--light-gray);
+    border-radius: 10px;
+    padding: 1.5rem;
+    height: fit-content;
+    box-sizing: border-box;
+}
+
+.summary-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+}
+
+.summary-items {
+    margin-bottom: 1.5rem;
+}
+
+.summary-product {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.summary-product:last-child {
+    border-bottom: none;
+}
+
+.product-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.product-name {
+    font-weight: 500;
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+}
+
+.product-quantity {
+    font-size: 0.85rem;
+    color: #777;
+}
+
+.product-price {
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.summary-item {
+    display: flex;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border-color);
+    align-items: center;
+    /* Centrar verticalmente los elementos */
+    width: 100%;
+    /* Asegurar que ocupe todo el ancho disponible */
+}
+
+.summary-item:last-child {
+    border-bottom: none;
+}
+
+.summary-item-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    object-fit: cover;
+    margin-right: 1rem;
+    flex-shrink: 0;
+    /* Evitar que la imagen se encoja */
+}
+
+.summary-item-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.summary-item-name {
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+.summary-item-price {
+    font-weight: 600;
+    color: hotpink;
+}
+
+.summary-item-quantity {
+    color: #777;
+    font-size: 0.9rem;
+}
+
+.summary-totals {
+    margin-bottom: 1.5rem;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+}
+
+.summary-row.total {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: hotpink;
+    border-top: 1px solid var(--border-color);
+    padding-top: 0.75rem;
+    margin-top: 0.75rem;
+}
+
+.summary-row.discount {
+    color: var(--success-color);
+}
+
+.promo-code {
+    margin-top: 1rem;
+}
+
+.checkout-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    /* Aumentar margen inferior */
+    position: relative;
+    z-index: 10;
+    /* Asegurar que los botones estén siempre visibles */
+}
+
+/* Asegurar que los botones de navegación estén siempre visibles */
+.d-flex.justify-content-between.mt-4 {
+    position: relative;
+    z-index: 10;
+    margin-top: 2rem !important;
+    padding-top: 1rem;
+    clear: both;
+    margin-bottom: 2rem;
+    background: transparent;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* Añadir espacio adicional al final de cada paso */
+.step-content {
+    padding-bottom: 4rem;
+}
+
+/* Estilos para formularios */
+.form-container {
+    padding: 0.5rem 0;
+}
+
+.form-section {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+}
+
+.form-section h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1.25rem;
+    color: var(--text-color);
+}
+
+
+
+/* Estilos para sliders */
+.slider-container {
+    width: 100%;
+    margin: 1.5rem 0;
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 8px;
+    border-radius: 5px;
+    background: #f0f0f0;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--slider-color);
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--slider-color);
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.slider::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+.slider::-moz-range-thumb:hover {
+    transform: scale(1.1);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+.slider-value {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+.slider-label {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.slider-current-value {
+    font-weight: 600;
+    color: var(--slider-color);
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+display: flex;
+align-items: center;
+}
+
+/* Estilos para el icono de tipo de tarjeta */
+.card-type-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+#numeroTarjeta {
+    padding-right: 40px; /* Espacio para el icono */
+}
+
+.input-group {
+    position: relative;
+}
+
+.form-label {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: #555;
+}
+
+.form-control,
+.form-select {
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: hotpink;
+    box-shadow: 0 0 0 0.2rem rgba(255, 105, 180, 0.25);
+}
+
+.error {
+    color: var(--error-color);
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+}
+
+.oculto {
+    display: none;
+}
+
+/* Estilos para los items del carrito */
+.cart-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border-color);
+    width: 100%;
+    min-height: 100px;
+    /* Altura mínima consistente */
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.item-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-right: 1rem;
+    flex-shrink: 0;
+    background-color: #f8f9fa;
+    /* Fondo para imágenes que fallan */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.item-image img:hover {
+    transform: scale(1.05);
+}
+
+.item-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 80px;
+    /* Altura mínima consistente */
+}
+
+.item-name {
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+    line-height: 1.2;
+}
+
+.item-price {
+    font-weight: 600;
+    color: hotpink;
+    margin-bottom: 0.25rem;
+}
+
+.item-quantity {
+    font-size: 0.9rem;
+    color: #777;
+}
+
+.item-subtotal {
+    font-weight: 600;
+    color: var(--text-color);
+    margin-left: 1rem;
+    text-align: right;
+    min-width: 80px;
+    /* Ancho mínimo para alineación */
+}
+
+/* Estilos para opciones de dirección */
+.address-options {
+    margin-bottom: 1.5rem;
+}
+
+.address-option-cards {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.address-card {
+    flex: 1;
+    min-width: 280px;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem;
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: white;
+    position: relative;
+}
+
+.address-card:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 12px rgba(255, 105, 180, 0.1);
+}
+
+.address-card i {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #777;
+    transition: color 0.3s ease;
+}
+
+.address-card.selected {
+    border-color: hotpink;
+    background-color: rgba(255, 105, 180, 0.05);
+}
+
+.address-card.selected i {
+    color: hotpink;
+}
+
+.address-card .address-info {
+    text-align: left;
+    width: 100%;
+}
+
+.address-card .address-info h5 {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+.address-card .address-info p {
+    margin-bottom: 0.25rem;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.address-card .address-check {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: var(--success-color);
+    font-size: 1.2rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.address-card.selected .address-check {
+    opacity: 1;
+}
+
+.mensaje-tienda {
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    background-color: rgba(255, 105, 180, 0.1);
+    border: 1px solid rgba(255, 105, 180, 0.2);
+}
+
+/* Estilos para tarjetas guardadas */
+.saved-cards {
+    margin-bottom: 2rem;
+}
+
+.cards-container {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.card-item {
+    flex: 1;
+    min-width: 280px;
+    min-height: 100px;
+    display: flex;
+    align-items: left;
+    padding: 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    background-color: white;
+}
+
+.card-item:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 12px rgba(255, 105, 180, 0.1);
+}
+
+.card-item.visa {
+    background-color: rgba(0, 83, 173, 0.05);
+}
+
+.card-item.mastercard {
+    background-color: rgba(237, 28, 36, 0.05);
+}
+
+.card-item.amex {
+    background-color: rgba(0, 112, 192, 0.05);
+}
+
+.card-logo {
+    width: 40px;
+    margin-right: 1rem;
+    flex-shrink: 0;
+}
+
+.card-logo img {
+    width: 100%;
+    height: auto;
+}
+
+.card-info {
+    flex: 1;
+    min-height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card-info h5 {
+    margin-bottom: 0.25rem;
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+.card-info p {
+    margin-bottom: 0.25rem;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.card-number {
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+    font-family: 'Courier New', monospace;
+}
+
+.card-name {
+    font-size: 0.9rem;
+    color: #777;
+}
+
+.card-check {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: var(--success-color);
+    font-size: 1.2rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card-item.selected {
+    border-color: var(--success-color);
+    background-color: rgba(40, 167, 69, 0.05);
+}
+
+.card-item.selected .card-check {
+    display: block;
+    opacity: 1;
+}
+
+/* Estilos para formulario de tarjeta */
+.card-input {
+    position: relative;
+}
+
+.card-icons {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    gap: 5px;
+    z-index: 1;
+    /* Asegurar que los iconos estén por encima de otros elementos */
+}
+
+.card-icons img {
+    width: 30px;
+    height: auto;
+}
+
+/* Estilos para el resumen de productos */
+.summary-products {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.summary-product {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border-color);
+    min-height: 60px;
+}
+
+.summary-product:last-child {
+    border-bottom: none;
+}
+
+.product-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.product-name {
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+    line-height: 1.2;
+}
+
+.product-quantity {
+    font-size: 0.9rem;
+    color: #777;
+}
+
+.product-price {
+    font-weight: 600;
+    color: var(--text-color);
+    text-align: right;
+    min-width: 60px;
+}
+
+/* Estilos para QR */
+.qr-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    background-color: var(--light-gray);
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    /* Reducir el margen inferior */
+    overflow: visible !important;
+    /* Contener el contenido */
+    min-height: unset !important;
+    max-width: 100%;
+}
+
+.qr-code {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.qr-instructions {
+    text-align: center;
+    max-width: 300px;
+}
+
+/* Estilos para confirmación */
+.confirmation-container {
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    /* Reducir el margen inferior */
+    overflow: hidden;
+    /* Contener el contenido */
+}
+
+.success-animation {
+    font-size: 5rem;
+    color: var(--success-color);
+    margin-bottom: 1.5rem;
+    animation: scaleIn 0.5s ease;
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+.confirmation-container h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--success-color);
+}
+
+.order-details {
+    background-color: var(--light-gray);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin: 2rem auto;
+    max-width: 500px;
+    text-align: left;
+}
+
+.order-details h5 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+}
+
+.order-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.order-info-item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.confirmation-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+/* Productos en el carrito */
+.products-container {
+    margin-bottom: 1.5rem;
+}
+
+.product-item {
+    display: flex;
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.product-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    object-fit: cover;
+    margin-right: 1rem;
+}
+
+.product-details {
+    flex: 1;
+}
+
+.product-name {
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+.product-price {
+    font-weight: 600;
+    color: hotpink;
+}
+
+.product-quantity {
+    color: #777;
+    font-size: 0.9rem;
+}
+
+/* Estilos para botones */
+.btn-primary {
+    background-color: hotpink;
+    border-color: hotpink;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: #e91e63;
+    border-color: #e91e63;
+    box-shadow: 0 0 0 0.2rem rgba(255, 105, 180, 0.25);
+}
+
+.btn-outline-secondary {
+    border-color: var(--border-color);
+    color: #555;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-secondary:hover,
+.btn-outline-secondary:focus {
+    background-color: #f5f5f5;
+    color: #333;
+    border-color: #ccc;
+}
+
+.loading-container {
+    padding: 2rem;
+    text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .checkout-container {
+        padding: 1rem 0.5rem 10rem 0.5rem;
+        min-height: 100vh;
+    }
+
+    .checkout-content {
+        grid-template-columns: 1fr;
+        padding-bottom: 0;
+    }
+
+    .checkout-summary {
+        order: -1;
+        margin-bottom: 2rem;
+    }
+
+    .step-icon-container {
+        width: 50px;
+        height: 50px;
+    }
+
+    .step-label {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .progress-bar {
+        top: 25px;
+    }
+
+    .step-icon-container {
+        width: 40px;
+        height: 40px;
+    }
+
+    .step-icon-container i {
+        font-size: 1.2rem;
+    }
+
+    .step-label {
+        font-size: 0.7rem;
+    }
+
+    .step-content {
+        padding: 1.5rem;
+    }
+
+    .card-item {
+        min-width: 100%;
+    }
+
+    .confirmation-actions {
+        flex-direction: column;
+    }
+
+    .confirmation-actions .btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    body {
+        overflow-x: hidden;
+        /* Prevenir scroll horizontal */
+    }
+
+    .checkout-container {
+        margin: 7rem auto 0 auto;
+        padding: 0.2rem 0.1rem 14rem 0.1rem;
+        border-radius: 8px;
+        min-height: 100vh;
+        max-width: 100%;
+        overflow: visible !important;
+    }
+
+    .checkout-content {
+        margin-top: 0;
+        /* Eliminar margen superior adicional en móviles */
+        display: block;
+        /* Cambiar a bloque en lugar de grid para mejor control */
+        width: 100%;
+        overflow: visible !important;
+        /* Permitir que todo el contenido sea visible */
+        position: relative;
+        /* Asegurar posicionamiento relativo */
+        max-height: auto;
+        /* Eliminar restricción de altura */
+        padding-bottom: 0;
+    }
+
+    .checkout-steps {
+        width: 100%;
+        position: relative;
+        /* Añadir posición relativa */
+        overflow: visible;
+        /* Permitir que todo el contenido sea visible */
+    }
+
+    .step-content {
+        max-height: none;
+        /* Eliminar restricción de altura en móviles */
+        overflow: auto;
+        /* Permitir que el contenido sea visible */
+        min-height: auto !important;
+        /* Permitir altura automática */
+    }
+
+    .checkout-summary {
+        width: 100%;
+        margin-top: 1.5rem;
+    }
+
+    /* Ajustar elementos del resumen en móviles */
+    .summary-item {
+        padding: 0.75rem 0;
+    }
+
+    .summary-item-img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .summary-item-name {
+        font-size: 0.9rem;
+    }
+
+    .summary-item-price {
+        font-size: 0.9rem;
+    }
+
+    /* Ajustar elementos del carrito en móviles */
+    .cart-item {
+        padding: 0.75rem 0;
+    }
+
+    .item-image {
+        width: 60px;
+        height: 60px;
+    }
+
+    .item-name {
+        font-size: 0.9rem;
+    }
+
+    .item-price,
+    .item-subtotal {
+        font-size: 0.9rem;
+    }
+
+    .item-quantity {
+        font-size: 0.8rem;
+    }
+
+    /* Ajustar elementos del resumen de productos en móviles */
+    .summary-product {
+        padding: 0.5rem 0;
+    }
+
+    .product-name {
+        font-size: 0.85rem;
+    }
+
+    .product-quantity {
+        font-size: 0.8rem;
+    }
+
+    .product-price {
+        font-size: 0.85rem;
+    }
+
+    .progress-bar {
+        display: none;
+    }
+
+    .progress-steps {
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+    }
+
+    .progress-step {
+        width: 45%;
+    }
+
+    .step-content {
+        padding: 1rem;
+        width: 100%;
+        box-sizing: border-box;
+        overflow: visible;
+        max-height: none;
+        /* Eliminar restricción de altura */
+        min-height: auto !important;
+        /* Permitir altura automática */
+    }
+
+    .address-option-cards,
+    .payment-methods {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    /* Ajustar formularios para móviles */
+    #formulario-direccion,
+    #form-direccion,
+    #formulario-tarjeta,
+    #form-tarjeta {
+        width: 100%;
+        box-sizing: border-box;
+        margin-bottom: 2rem;
+        /* Reducir el margen inferior */
+        overflow: auto;
+        /* Permitir que todo el contenido sea visible */
+        min-height: auto !important;
+        /* Permitir altura automática */
+    }
+
+    /* Asegurar que los inputs no se desborden */
+    .form-control {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Ajustar tamaño de fuente para mejor legibilidad en móviles */
+    .step-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .step-header p {
+        font-size: 0.9rem;
+    }
+
+    /* Ajustar botones para móviles */
+    .btn {
+        white-space: normal;
+        /* Permitir que el texto se ajuste en múltiples líneas */
+        word-wrap: break-word;
+    }
+
+    /* Ajustar navegación entre pasos */
+    .d-flex.justify-content-between {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    /* Asegurar que los botones de navegación tengan espacio suficiente */
+    .d-flex.justify-content-between .btn {
+        margin: 5px 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .address-card {
+        min-width: 100%;
+        min-height: 100px;
+    }
+
+    .card-item {
+        min-width: 100%;
+        min-height: 80px;
+    }
+
+    .cart-item {
+        min-height: 80px;
+    }
+
+    .item-image {
+        width: 60px;
+        height: 60px;
+    }
+
+    .item-details {
+        min-height: 60px;
+    }
+}
+
+.formulario {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 20px auto;
+}

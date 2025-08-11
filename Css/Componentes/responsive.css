@@ -1,0 +1,163 @@
+/* Responsive Mobile */
+@media (max-width: 576px) {
+    .busqueda {
+        max-width: 100%;
+    }
+}
+
+/* === Estilos base (desktop first) ya aplicados arriba === */
+
+/* === Responsive: Dispositivos móviles (pantallas menores a 576px) === */
+@media (max-width: 576px) {
+
+    /* Ajustes generales */
+    html,
+    body {
+        overflow-x: hidden;
+        padding: 0;
+        margin: 0;
+    }
+
+    .banner {
+        flex-direction: column;
+        padding: 10px 15px;
+    }
+
+    .banner .logo {
+        position: static;
+        transform: none;
+        margin-bottom: 10px;
+    }
+
+    .icons {
+        justify-content: center;
+    }
+
+    .navbar-nav {
+        text-align: center;
+    }
+
+    /* Sección Categorías */
+    .categorias {
+        padding: 50px 15px;
+    }
+
+    .categoria-grid {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .categoria {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    .btn-explorar {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+
+    /* Info Cards */
+    .info-sections {
+        flex-direction: column;
+        padding: 40px 15px;
+        gap: 20px;
+    }
+
+    .info-card {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+        padding: 25px 20px;
+    }
+
+    /* Footer */
+    .footer-sections {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 30px;
+    }
+
+    .footer-column {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .footer-social img,
+    .footer-pagos img {
+        height: 24px;
+        margin: 0 8px;
+    }
+
+    .footer-dev,
+    .footer-copy {
+        font-size: 0.85em;
+        padding: 0 10px;
+    }
+
+    /* Página Cuenta */
+    .cuenta-sidebar {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .cuenta-sidebar button {
+        font-size: 0.95rem;
+        padding: 10px;
+    }
+
+    .cuenta-content {
+        padding: 20px 15px;
+    }
+
+    /* Carrito */
+    .carrito-container {
+        padding: 1rem;
+    }
+
+    .producto-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .producto-img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .continuar-btn {
+        width: 100%;
+    }
+
+    /* Contacto */
+    .contact-content {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .contact-info {
+        text-align: center;
+    }
+
+    /* Productos Page */
+    .productos-grid {
+        grid-template-columns: 1fr;
+        padding: 0;
+        gap: 20px;
+    }
+
+    .filtros-container {
+        width: 100%;
+        align-items: stretch;
+    }
+
+    .busqueda {
+        width: 100%;
+        max-width: 100%;
+    }
+}

@@ -1,0 +1,95 @@
+footer {
+    background-color: #fff;
+    border-top: 3px solid hotpink;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.footer {
+    color: #2333;
+    padding: 10px 10px;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+}
+
+.footer-sections {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 70px;
+    margin-top: 30px;
+
+}
+
+.footer-column {
+    min-width: 180px;
+    text-align: left;
+}
+
+.footer-column h3 {
+    color: hotpink;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-column li {
+    margin-bottom: 20px;
+}
+
+.footer-column a {
+    text-decoration: none;
+    color: black;
+    transition: color 0.3s ease;
+}
+
+.footer-column a:hover {
+    color: #c2185b;
+}
+
+.footer-social {
+    margin-bottom: 20px;
+}
+
+.footer-social a {
+    color: #e91e63;
+    margin: 0 5px;
+    font-size: 1.5em;
+    transition: color 0.1s ease;
+    text-decoration: none;
+    border: none;
+}
+
+.footer-social a:hover {
+    color: #c2185b;
+}
+
+.footer-social img {
+    height: 25px;
+    margin: 0 5px;
+}
+
+.footer-pagos {
+    margin: 20px 0;
+}
+
+.footer-pagos img {
+    height: 30px;
+    margin: 0 15px;
+    vertical-align: middle;
+}
+
+.footer-dev,
+.footer-copy {
+    font-size: 0.9em;
+    color: #888;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

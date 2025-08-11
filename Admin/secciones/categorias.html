@@ -1,0 +1,110 @@
+<h1 class="h3 mb-4 text-gray-800">Gestión de Categorías</h1>
+
+<div class="card shadow mb-4 border-start border-success">
+  <div class="card-header py-3 d-flex justify-content-between">
+    <h6 class="m-0 font-weight-bold text-success">Listado de Categorías</h6>
+    <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modalAgregarCategoria">
+      <i class="bi bi-plus-circle"></i> Nueva Categoría
+    </button>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-hover" id="tabla-categorias">
+        <thead class="table-light">
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Agregar -->
+<div class="modal fade" id="modalAgregarCategoria" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="formAgregarCategoria">
+        <div class="modal-header">
+          <h5 class="modal-title">Nueva Categoría</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <input type="text" class="form-control" id="nuevoNombreCategoria" placeholder="Nombre de la categoría"
+            required />
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success">Registrar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Editar -->
+<div class="modal fade" id="modalEditarCategoria" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="formEditarCategoria">
+        <div class="modal-header">
+          <h5 class="modal-title">Editar Categoría</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="editIdCategoria" />
+          <input type="text" class="form-control" id="editNombreCategoria" placeholder="Nombre de la categoría"
+            required />
+          <select id="editEstadoCategoria" class="form-select mt-3">
+            <option value="1">Activo</option>
+            <option value="0">Inactivo</option>
+          </select>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Confirmar Eliminación -->
+<div class="modal fade" id="modalConfirmarEliminacion" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content border-start border-danger">
+      <div class="modal-header">
+        <h5 class="modal-title text-danger">Confirmar Eliminación</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        ¿Estás seguro de eliminar esta categoría?
+        <input type="hidden" id="idCategoriaEliminar" />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger" id="btnConfirmarEliminar">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Toasts -->
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 9999">
+  <div id="toastSuccess" class="toast align-items-center text-white bg-success border-0" role="alert">
+    <div class="d-flex">
+      <div class="toast-body">Operación realizada con éxito.</div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+    </div>
+  </div>
+
+  <div id="toastError" class="toast align-items-center text-white bg-danger border-0" role="alert">
+    <div class="d-flex">
+      <div class="toast-body">Ocurrió un error. Inténtalo nuevamente.</div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+    </div>
+  </div>
+</div>

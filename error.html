@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" href="Imagenes/MakawiLogoBg.png" type="image/x-icon" />
+        <title>Error 404</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background-color: #fff;
+                color: #ff69b4;
+                /* hotpink */
+                text-align: center;
+                padding: 20px;
+            }
+
+            .container {
+                max-width: 600px;
+            }
+
+            .error-code {
+                font-size: 95px;
+                font-weight: 800;
+                color: #ff69b4;
+            }
+
+            .error-message {
+                font-size: 32px;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                font-weight: 600;
+            }
+
+            .error-description {
+                font-size: 18px;
+                margin-bottom: 30px;
+                color: #444;
+            }
+
+            .btn-home {
+                display: inline-block;
+                background-color: hotpink;
+                color: white;
+                padding: 12px 30px;
+                text-decoration: none;
+                border-radius: 30px;
+                font-size: 16px;
+                transition: background-color 0.3s ease;
+            }
+
+            .btn-home:hover {
+                background-color: deeppink;
+            }
+
+            /* Optional: responsive text */
+            @media (max-width: 480px) {
+                .error-code {
+                    font-size: 80px;
+                }
+
+                .error-message {
+                    font-size: 24px;
+                }
+
+                .error-description {
+                    font-size: 16px;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="error-code">404</div>
+            <div class="error-message">Página no encontrada</div>
+            <p class="error-description">Lo sentimos, la página que buscas no existe</p>
+            <a href="index.html" class="btn-home">Volver a la página principal</a>
+        </div>
+    </body>
+
+</html>

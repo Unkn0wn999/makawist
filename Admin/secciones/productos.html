@@ -1,0 +1,142 @@
+<h1 class="h3 mb-4 text-gray-800">Inventario de Productos</h1>
+
+<div class="card shadow border-start border-warning mb-4">
+  <div class="card-header d-flex justify-content-between align-items-center">
+    <h6 class="m-0 font-weight-bold text-warning">Lista de Productos</h6>
+    <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#modalAgregarProducto">
+      <i class="bi bi-plus-circle"></i> Nuevo Producto
+    </button>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-hover" id="tabla-productos">
+        <thead class="table-light">
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Categoría</th>
+            <th>Stock</th>
+            <th>Precio</th>
+            <th>Estado</th>
+            <th>Creado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Agregar Producto -->
+<div class="modal fade" id="modalAgregarProducto" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <form id="formAgregarProducto">
+        <div class="modal-header">
+          <h5 class="modal-title">Nuevo Producto</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body row g-3">
+          <div class="col-md-6">
+            <label>Nombre</label>
+            <input id="nuevoNombre" type="text" class="form-control" required>
+          </div>
+          <div class="col-md-6">
+            <label>Categoría</label>
+            <select id="nuevoCategoria" class="form-select" required></select>
+          </div>
+          <div class="col-md-6">
+            <label>Precio</label>
+            <input id="nuevoPrecio" step="0.01" type="number" class="form-control" required>
+          </div>
+          <div class="col-md-6">
+            <label>Precio Oferta</label>
+            <input id="nuevoPrecioOferta" step="0.01" type="number" class="form-control">
+          </div>
+          <div class="col-md-6">
+            <label>Stock</label>
+            <input id="nuevoStock" type="number" class="form-control" required>
+          </div>
+          <div class="col-md-6">
+            <label>Imagen</label>
+            <input id="nuevoImagenFile" type="file" class="form-control" accept="image/*" required>
+          </div>
+          <div class="col-12">
+            <label>Descripción</label>
+            <textarea id="nuevoDescripcion" class="form-control" rows="2"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-warning" type="submit">Registrar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Editar Producto -->
+<div class="modal fade" id="modalEditarProducto" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <form id="formEditarProducto">
+        <div class="modal-header">
+          <h5 class="modal-title">Editar Producto</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body row g-3">
+          <input type="hidden" id="editIdProducto">
+          <div class="col-md-6">
+            <label>Nombre</label>
+            <input id="editNombre" type="text" class="form-control" required>
+          </div>
+          <div class="col-md-6">
+            <label>Categoría</label>
+            <select id="editCategoria" class="form-select" required></select>
+          </div>
+          <div class="col-md-6">
+            <label>Precio</label>
+            <input id="editPrecio" step="0.01" type="number" class="form-control" required>
+          </div>
+          <div class="col-md-6">
+            <label>Precio Oferta</label>
+            <input id="editPrecioOferta" step="0.01" type="number" class="form-control">
+          </div>
+          <div class="col-md-6">
+            <label>Stock</label>
+            <input id="editStock" type="number" class="form-control" required>
+          </div>
+          <div class="col-md-6">
+            <label>Imagen</label>
+            <input id="editImagenFile" type="file" class="form-control" accept="image/*">
+            <input id="editImagenURL" type="hidden">
+            <small class="form-text text-muted">Deje en blanco para mantener la imagen actual</small>
+          </div>
+          <div class="col-md-6">
+            <label>Activo</label>
+            <select id="editActivo" class="form-select">
+              <option value="1">Sí</option>
+              <option value="0">No</option>
+            </select>
+          </div>
+          <div class="col-12">
+            <label>Descripción</label>
+            <textarea id="editDescripcion" class="form-control" rows="2"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-warning" type="submit">Guardar Cambios</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<!-- Toastify CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+<!-- Toastify JS -->
+<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+<script src="../js/productos.js"></script>

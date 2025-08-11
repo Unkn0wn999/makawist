@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Checkout - Makawi Store</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="Css/estilos.css" />
+        <link rel="stylesheet" href="Css/Componentes/checkout.css" />
+        <link rel="stylesheet" href="Css/Componentes/toast.css" />
+        <link rel="icon" href="Imagenes/MakawiLogoBg.png" />
+    </head>
+
+    <body>
+        <div id="header-placeholder"></div>
+
+        <div class="checkout-container">
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <div class="progress-steps">
+                    <div class="progress-step active" data-step="1">
+                        <div class="step-icon-container">
+                            <i class="bi bi-cart"></i>
+                        </div>
+                        <div class="step-label">Carrito</div>
+                    </div>
+                    <div class="progress-step" data-step="2">
+                        <div class="step-icon-container">
+                            <i class="bi bi-person-vcard"></i>
+                        </div>
+                        <div class="step-label">Datos</div>
+                    </div>
+                    <div class="progress-step" data-step="3">
+                        <div class="step-icon-container">
+                            <i class="bi bi-credit-card"></i>
+                        </div>
+                        <div class="step-label">Pago</div>
+                    </div>
+                    <div class="progress-step" data-step="4">
+                        <div class="step-icon-container">
+                            <i class="bi bi-check-circle"></i>
+                        </div>
+                        <div class="step-label">Confirmación</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="checkout-content">
+                <div class="checkout-steps">
+                    <!-- Paso 1: Carrito -->
+                    <div class="step-content active" id="step-1">
+                        <div class="step-header">
+                            <h2><i class="bi bi-cart-check"></i> Revisa tu carrito</h2>
+                            <p>Verifica los productos antes de continuar</p>
+                        </div>
+                        <div class="cart-items" id="cart-items">
+                            <!-- Los items del carrito se cargarán dinámicamente -->
+                        </div>
+                        <div class="d-flex justify-content-between mt-4">
+                            <button class="btn btn-outline-secondary" onclick="window.location.href='carrito.html'">
+                                <i class="bi bi-arrow-left"></i> Volver al carrito
+                            </button>
+                            <button class="btn btn-primary" onclick="avanzarPaso(2)">
+                                Continuar <i class="bi bi-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Paso 2: Datos de envío -->
+                    <div class="step-content" id="step-2">
+                        <div class="step-header">
+                            <h2><i class="bi bi-geo-alt"></i> Datos de envío</h2>
+                            <p>Ingresa la información para tu entrega</p>
+                        </div>
+                        <div class="shipping-options mb-4">
+                            <div class="delivery-options">
+                                <div class="delivery-option">
+                                    <input class="form-check-input" type="radio" name="opcionEntrega"
+                                        id="opcion-direccion" value="direccion" checked>
+                                    <label class="form-check-label" for="opcion-direccion">
+                                        <i class="bi bi-house"></i>
+                                        <span>Envío a domicilio</span>
+                                    </label>
+                                </div>
+                                <div class="delivery-option">
+                                    <input class="form-check-input" type="radio" name="opcionEntrega" id="opcion-tienda"
+                                        value="tienda">
+                                    <label class="form-check-label" for="opcion-tienda">
+                                        <i class="bi bi-shop"></i>
+                                        <span>Recoger en tienda</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="direcciones-guardadas" class="mb-4">
+                            <h4><i class="bi bi-bookmark-heart"></i> Direcciones guardadas</h4>
+                            <div class="saved-addresses" id="saved-addresses-container">
+                                <!-- Las direcciones guardadas se cargarán dinámicamente -->
+                            </div>
+                            <button class="btn btn-outline-primary mt-2" id="btn-nueva-direccion">
+                                <i class="bi bi-plus-circle"></i> Agregar nueva dirección
+                            </button>
+                        </div>
+
+                        <div id="formulario-direccion" class="mb-4">
+                            <h4><i class="bi bi-pencil-square"></i> Nueva dirección</h4>
+                            <form id="form-direccion" class="row g-3">
+                                <div class="col-12">
+                                    <label for="direccion" class="form-label">Dirección</label>
+                                    <input type="text" class="form-control" id="direccion" required
+                                        placeholder="Av. Principal 123, Interior 4">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="ciudad" class="form-label">Ciudad</label>
+                                    <input type="text" class="form-control" id="ciudad" required placeholder="Chiclayo">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="distrito" class="form-label">Departamento</label>
+                                    <select name="Departamento" id="departamento-select" class="form-control" required>
+                                        <option value="" disabled selected>Seleccione un departamento</option>
+                                        <option value="Amazonas">Amazonas</option>
+                                        <option value="Áncash">Áncash</option>
+                                        <option value="Apurímac">Apurímac</option>
+                                        <option value="Arequipa">Arequipa</option>
+                                        <option value="Ayacucho">Ayacucho</option>
+                                        <option value="Cajamarca">Cajamarca</option>
+                                        <option value="Callao">Callao</option>
+                                        <option value="Cusco">Cusco</option>
+                                        <option value="Huancavelica">Huancavelica</option>
+                                        <option value="Huánuco">Huánuco</option>
+                                        <option value="Ica">Ica</option>
+                                        <option value="Junín">Junín</option>
+                                        <option value="La Libertad">La Libertad</option>
+                                        <option value="Lambayeque">Lambayeque</option>
+                                        <option value="Lima">Lima</option>
+                                        <option value="Loreto">Loreto</option>
+                                        <option value="Madre de Dios">Madre de Dios</option>
+                                        <option value="Moquegua">Moquegua</option>
+                                        <option value="Pasco">Pasco</option>
+                                        <option value="Piura">Piura</option>
+                                        <option value="Puno">Puno</option>
+                                        <option value="San Martín">San Martín</option>
+                                        <option value="Tacna">Tacna</option>
+                                        <option value="Tumbes">Tumbes</option>
+                                        <option value="Ucayali">Ucayali</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="codigoPostal" class="form-label">Código Postal</label>
+                                    <input type="text" class="form-control" id="codigoPostal" required
+                                        placeholder="14001">
+                                </div>
+                                <div class="col-12">
+                                    <label for="referencia" class="form-label">Referencia</label>
+                                    <input type="text" class="form-control" id="referencia"
+                                        placeholder="Frente al parque principal, casa de color azul">
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="guardarDireccion">
+                                        <label class="form-check-label" for="guardarDireccion">
+                                            Guardar esta dirección para futuras compras
+                                        </label>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div id="tienda-pickup" class="mb-4" style="display: none;">
+                            <h4><i class="bi bi-shop"></i> Recoger en tienda</h4>
+                            <div class="store-location">
+                                <div class="store-card">
+                                    <div class="store-icon">
+                                        <i class="bi bi-shop"></i>
+                                    </div>
+                                    <div class="store-info">
+                                        <h5>Makawi Store - Chiclayo</h5>
+                                        <p><i class="bi bi-geo-alt"></i> Galería 7 de Enero, Chiclayo, Lambayeque</p>
+                                        <p><i class="bi bi-clock"></i> Horario: Lunes a Sábado 10:00 am - 7:00 pm</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between mt-4">
+                            <button class="btn btn-outline-secondary" onclick="retrocederPaso(1)">
+                                <i class="bi bi-arrow-left"></i> Atrás
+                            </button>
+                            <button class="btn btn-primary" onclick="avanzarPaso(3)">
+                                Continuar <i class="bi bi-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Paso 3: Método de pago -->
+                    <div class="step-content" id="step-3">
+                        <div class="step-header">
+                            <h2><i class="bi bi-credit-card"></i> Método de pago</h2>
+                            <p>Selecciona cómo quieres pagar</p>
+                        </div>
+                        <div class="payment-methods mb-4">
+                            <div class="payment-option">
+                                <input class="form-check-input" type="radio" name="metodoPago" id="metodo-tarjeta"
+                                    value="tarjeta" checked>
+                                <label class="form-check-label" for="metodo-tarjeta">
+                                    <div class="payment-option-content">
+                                        <i class="bi bi-credit-card"></i>
+                                        <span>Tarjeta de crédito/débito</span>
+                                        <div class="payment-icons">
+                                            <img src="Imagenes/Iconos/visa.svg" alt="Visa" height="25">
+                                            <img src="Imagenes/Iconos/mastercard.svg" alt="Mastercard" height="25">
+                                            <img src="Imagenes/Iconos/amex.svg" alt="American Express" height="25">
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="payment-option">
+                                <input class="form-check-input" type="radio" name="metodoPago" id="metodo-yape"
+                                    value="yape">
+                                <label class="form-check-label" for="metodo-yape">
+                                    <div class="payment-option-content">
+                                        <i class="bi bi-phone"></i>
+                                        <span>Yape</span>
+                                        <img src="Imagenes/Iconos/yape.svg" alt="Yape" height="25">
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="payment-option">
+                                <input class="form-check-input" type="radio" name="metodoPago" id="metodo-plin"
+                                    value="plin">
+                                <label class="form-check-label" for="metodo-plin">
+                                    <div class="payment-option-content">
+                                        <i class="bi bi-phone"></i>
+                                        <span>Plin</span>
+                                        <img src="Imagenes/Iconos/plin.svg" alt="Plin" height="25">
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div id="tarjetas-guardadas" class="mb-5">
+                            <h4><i class="bi bi-credit-card-2-front"></i> Tarjetas guardadas</h4>
+                            <div class="saved-cards" id="saved-cards-container">
+                                <!-- Las tarjetas guardadas se cargarán dinámicamente -->
+                            </div>
+                            <button class="btn btn-outline-primary mt-2" id="btn-nueva-tarjeta">
+                                <i class="bi bi-plus-circle"></i> Agregar nueva tarjeta
+                            </button>
+
+
+                        </div>
+
+                        <div id="formulario-tarjeta" class="mb-5">
+                            <h4><i class="bi bi-credit-card"></i> Nueva tarjeta</h4>
+                            <form id="form-tarjeta" class="row g-3">
+                                <div class="col-12">
+                                    <label for="nombreTarjeta" class="form-label">Nombre en la tarjeta</label>
+                                    <input type="text" class="form-control" id="nombreTarjeta" required>
+                                </div>
+                                <div class="col-12">
+                                    <label for="numeroTarjeta" class="form-label">Número de tarjeta</label>
+                                    <input type="text" class="form-control" id="numeroTarjeta" required maxlength="19"
+                                        placeholder="XXXX XXXX XXXX XXXX">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="fechaExpiracion" class="form-label">Fecha de expiración</label>
+                                    <input type="text" class="form-control" id="fechaExpiracion" required
+                                        placeholder="MM/AA">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="cvv" class="form-label">CVV</label>
+                                    <input type="text" class="form-control" id="cvv" required maxlength="4">
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="guardarTarjeta">
+                                        <label class="form-check-label" for="guardarTarjeta">
+                                            Guardar esta tarjeta para futuras compras
+                                        </label>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div id="pago-yape" class="mb-5" style="display: none;">
+                            <h4>Pago con Yape</h4>
+                            <div class="qr-container text-center">
+                                <img src="Imagenes/qr-yape.jpg" alt="QR Yape" class="img-fluid"
+                                    style="max-width: 250px;">
+                                <p class="mt-3">Escanea el código QR con tu app de Yape</p>
+                                <p><strong>Número:</strong> 932204477</p>
+                                <p><strong>Nombre:</strong> Makawi Store</p>
+                            </div>
+
+
+                        </div>
+
+                        <div id="pago-plin" class="mb-5" style="display: none;">
+                            <h4>Pago con Plin</h4>
+                            <div class="qr-container text-center">
+                                <img src="Imagenes/qr-plin.jpg" alt="QR Plin" class="img-fluid"
+                                    style="max-width: 250px;">
+                                <p class="mt-3">Escanea el código QR con tu app de Plin</p>
+                                <p><strong>Número:</strong> 932204477</p>
+                                <p><strong>Nombre:</strong> Makawi Store</p>
+                            </div>
+
+
+                        </div>
+
+                        <div class="d-flex justify-content-between mt-4">
+                            <button class="btn btn-outline-secondary" onclick="retrocederPaso(2)">
+                                <i class="bi bi-arrow-left"></i> Atrás
+                            </button>
+                            <button class="btn btn-primary" onclick="avanzarPaso(4)">
+                                Finalizar compra <i class="bi bi-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Paso 4: Confirmación -->
+                    <div class="step-content" id="step-4">
+                        <div class="step-header">
+                            <h2>¡Compra realizada con éxito!</h2>
+                            <p>Gracias por tu compra en Makawi Store</p>
+                        </div>
+                        <div class="confirmation-content text-center">
+                            <div class="confirmation-icon mb-4">
+                                <i class="bi bi-check-circle-fill text-success" style="font-size: 5rem;"></i>
+                            </div>
+                            <h3 class="mb-3">Tu pedido ha sido confirmado</h3>
+                            <p class="mb-4">Hemos enviado un correo electrónico con los detalles de tu compra.</p>
+                            <div class="order-details mb-4">
+                                <h4>Detalles del pedido</h4>
+                                <p><strong>Número de pedido:</strong> <span id="numero-pedido">MKW-12345</span></p>
+                                <p><strong>Fecha:</strong> <span id="fecha-pedido">01/06/2023</span></p>
+                                <p><strong>Método de pago:</strong> <span id="metodo-pago">Tarjeta</span></p>
+                                <p><strong>Total:</strong> <span id="total-pedido">S/ 150.00</span></p>
+                            </div>
+                            <div class="d-flex justify-content-center gap-3 mb-4">
+                                <button class="btn btn-outline-primary" id="descargar-comprobante">
+                                    <i class="bi bi-download"></i> Descargar comprobante
+                                </button>
+                                <button class="btn btn-primary" id="ver-pedidos">
+                                    <i class="bi bi-bag"></i> Ver mis pedidos
+                                </button>
+                            </div>
+                            <div class="mt-4">
+                                <a href="index.html" class="btn btn-outline-secondary">
+                                    <i class="bi bi-house"></i> Volver a la tienda
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resumen de compra -->
+                <div class="checkout-summary">
+                    <div class="summary-header">
+                        <h3>Resumen de compra</h3>
+                    </div>
+                    <div class="summary-products" id="summary-products">
+                        <!-- Los productos se cargarán dinámicamente -->
+                    </div>
+                    <div class="summary-totals">
+                        <div class="summary-row">
+                            <span>Subtotal</span>
+                            <span id="subtotal">S/ 0.00</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Envío</span>
+                            <span id="envio">S/ 0.00</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Descuento</span>
+                            <span id="descuento">-S/ 0.00</span>
+                        </div>
+                        <div class="summary-row total">
+                            <span>Total</span>
+                            <span id="total">S/ 0.00</span>
+                        </div>
+                    </div>
+                    <div class="promo-code mt-3">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Código promocional" id="codigo-promo">
+                            <button class="btn btn-outline-primary" type="button" id="aplicar-promo">Aplicar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="footer-placeholder"></div>
+        <div id="popups-placeholder"></div>
+
+        <!-- Scripts -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf.plugin.autotable.min.js"></script>
+        <script src="Js/layout-loader.js"></script>
+        <script src="Js/toast.js"></script>
+        <script src="Js/validaciones.js"></script>
+        <script src="Js/checkout.js"></script>
+    </body>
+
+</html>

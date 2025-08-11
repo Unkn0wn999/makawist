@@ -1,0 +1,81 @@
+.navbar {
+  background-color: white !important;
+  padding: 3px;
+  color: hotpink;
+}
+
+/* Borde inferior hotpink para el navbar */
+.navbar {
+  border-bottom: 3px solid hotpink !important;
+}
+
+.navbar {
+  border-bottom: 3px solid hotpink !important;
+  transition: border-color 0.3s ease;
+}
+
+
+.navbar-brand {
+  font-size: 1.8rem;
+  color: hotpink !important;
+}
+
+.text-pink {
+  color: hotpink !important;
+}
+
+.navbar-toggler .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='hotpink' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+.toggler-pink .navbar-toggler {
+  border-color: hotpink;
+}
+
+.menu-icon {
+  width: 30px;
+  height: 20px;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+.menu-icon span {
+  display: block;
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  background: hotpink;
+  border-radius: 3px;
+  opacity: 1;
+  left: 0;
+  transition: all 0.3s ease-in-out;
+}
+
+.menu-icon span:nth-child(1) {
+  top: 0;
+}
+
+.menu-icon span:nth-child(2) {
+  top: 8px;
+}
+
+.menu-icon span:nth-child(3) {
+  top: 16px;
+}
+
+/* Animación al hacer toggle */
+.navbar-toggler[aria-expanded="true"] .menu-icon span:nth-child(1) {
+  transform: rotate(45deg);
+  top: 8px;
+}
+
+.navbar-toggler[aria-expanded="true"] .menu-icon span:nth-child(2) {
+  opacity: 0;
+}
+
+.navbar-toggler[aria-expanded="true"] .menu-icon span:nth-child(3) {
+  transform: rotate(-45deg);
+  top: 8px;
+}

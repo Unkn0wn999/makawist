@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Detalle de Producto - Makawi Store Cix</title>
+        <link rel="icon" type="image/png" href="imagenes/MakawiLogoBg.png" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+        <link rel="stylesheet" href="Css/estilos.css">
+        <link rel="stylesheet" href="Css/Componentes/detalle.css">
+
+    </head>
+
+    <body class="detalless">
+        <div id="header-placeholder"></div>
+
+        <main class="container py-4">
+            <div class="row">
+                <div class="col-12">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+                            <li class="breadcrumb-item"><a href="productos.html">Productos</a></li>
+                            <li class="breadcrumb-item"><a href="#" id="categoria-breadcrumb">Categoría</a></li>
+                            <li class="breadcrumb-item active" aria-current="page" id="producto-breadcrumb">Nombre del
+                                Producto</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="row producto-detalle animate__animated animate__fadeIn">
+                <!-- Columna de imágenes -->
+                <div class="col-md-5 mb-4">
+                    <div class="producto-imagenes">
+                        <img src="/Imagenes/no-disponible.png" alt="Producto" class="imagen-principal"
+                            id="imagen-principal">
+                        <div class="miniaturas" id="miniaturas-container">
+                            <!-- Las miniaturas se cargarán dinámicamente -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Columna de información -->
+                <div class="col-md-7">
+                    <div class="producto-info">
+                        <div class="producto-categoria" id="producto-categoria">Categoría</div>
+                        <h1 class="producto-nombre" id="producto-nombre">Cargando producto...</h1>
+                    </div>
+
+                    <div class="producto-precio" id="producto-precio">
+                        <span class="precio-actual">S/ 0.00</span>
+                    </div>
+
+                    <div class="producto-stock" id="producto-stock">
+                        Verificando disponibilidad...
+                    </div>
+
+                    <div class="producto-descripcion" id="producto-descripcion">
+                        Cargando descripción del producto...
+                    </div>
+
+                    <div class="producto-caracteristicas">
+                        <h4 class="caracteristicas-titulo">Características</h4>
+                        <ul class="caracteristicas-lista" id="caracteristicas-container">
+                            <!-- Las características se cargarán dinámicamente -->
+                        </ul>
+                    </div>
+
+                    <div class="controles-cantidad">
+                        <span class="cantidad-label">Cantidad:</span>
+                        <div class="cantidad-control">
+                            <button class="btn-cantidad" id="btn-restar">-</button>
+                            <input type="number" class="input-cantidad" id="cantidad" value="1" min="1" max="10">
+                            <button class="btn-cantidad" id="btn-sumar">+</button>
+                        </div>
+                    </div>
+
+                    <div class="producto-acciones">
+                        <button class="btn-agregar-carrito" id="btn-agregar-carrito">
+                            <i class="bi bi-cart-plus"></i> Agregar al carrito
+                        </button>
+                        <button class="btn-favorito" id="btn-favorito">
+                            <i class="bi bi-heart"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabs de información adicional y reseñas -->
+            <div class="producto-tabs">
+                <ul class="nav nav-tabs" id="producto-tab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="descripcion-tab" data-bs-toggle="tab"
+                            data-bs-target="#descripcion-tab-pane" type="button" role="tab"
+                            aria-controls="descripcion-tab-pane" aria-selected="true">Descripción detallada</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="resenas-tab" data-bs-toggle="tab"
+                            data-bs-target="#resenas-tab-pane" type="button" role="tab" aria-controls="resenas-tab-pane"
+                            aria-selected="false">Reseñas</button>
+                    </li>
+                </ul>
+                <div class="tab-content" id="producto-tab-content">
+                    <div class="tab-pane fade show active" id="descripcion-tab-pane" role="tabpanel"
+                        aria-labelledby="descripcion-tab" tabindex="0">
+                        <div id="descripcion-detallada">
+                            <!-- La descripción detallada se cargará dinámicamente -->
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="resenas-tab-pane" role="tabpanel" aria-labelledby="resenas-tab"
+                        tabindex="0">
+                        <div id="resenas-container">
+                            <!-- Las reseñas se cargarán dinámicamente -->
+                        </div>
+
+                        <div id="form-resena-container">
+                            <!-- El formulario de reseña se mostrará solo si el usuario ha comprado el producto -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <div id="footer-placeholder"></div>
+        <div id="popups-placeholder"></div>
+
+        <!-- Scripts -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="Js/layout-loader.js"></script>
+        <script src="Js/toast.js"></script>
+        <script src="Js/detalle-producto.js"></script>
+    </body>
+
+</html>

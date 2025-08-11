@@ -1,0 +1,68 @@
+
+
+
+.card-promocion.activa {
+    position: relative;
+    border-radius: 1rem;
+    z-index: 1;
+    background-color: #fff;
+}
+
+.card-promocion.activa::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(270deg, hotpink, #ff66cc, #ffccff, #ff66cc, hotpink);
+    background-size: 600% 600%;
+    border-radius: 1rem;
+    z-index: -1;
+    animation: animarBorde 5s ease infinite;
+}
+
+@keyframes animarBorde {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.card-promocion.activa {
+    position: relative;
+    border-radius: 1rem;
+    z-index: 1;
+    overflow: hidden;
+    background-color: hotpink !important;
+    color: white;
+}
+
+.card-promocion.activa .card-title {
+    color: #fff !important;
+    font-weight: bold;
+}
+
+.card-promocion.activa .card-text {
+    color: white !important;
+    font-weight: bold;
+}
+
+.card-promocion.activa .btn {
+    background-color: #fff !important;
+    color: hotpink !important;
+    font-weight: bold;
+    border: none;
+}
+
+.card-promocion.activa .btn:hover {
+    background-color: #ffe6f0 !important;
+    color: #c2185b !important;
+}

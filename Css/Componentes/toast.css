@@ -1,0 +1,43 @@
+/* Estilo base del toast */
+.toast-notificacion {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #ffc107;
+    color: #fff;
+    padding: 12px 18px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    display: none;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    max-width: 300px;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    transform: translateY(-20px);
+}
+
+/* Animación cuando aparece */
+.toast-notificacion.show {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Tipos de mensajes */
+.toast-success {
+    background-color: #28a745;
+}
+
+.toast-error {
+    background-color: #dc3545;
+}
+
+.toast-warn {
+    background-color: #ffc107;
+    color: #000;
+}
+
+/* Se eliminó toast-info y se reemplazó por toast-warn */

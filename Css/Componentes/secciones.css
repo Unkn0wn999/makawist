@@ -1,0 +1,148 @@
+/* === Secciones generales (categorías, nuevo, vendido, gif, etc.) === */
+.nuevo,
+.vendido,
+.categorias,
+.gif-section {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+/* === Sección Categorías === */
+.categorias {
+    padding: 80px 20px 50px;
+    text-align: center;
+    background-color: transparent;
+}
+
+.categorias h2,
+.nuevo h2,
+.vendido h2 {
+    font-size: 2.1rem;
+    font-weight: 800;
+    color: #ff3399;
+    margin-bottom: 10px;
+}
+
+.categoria-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 40px;
+    margin-top: 30px;
+}
+
+.categoria {
+    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 220px;
+    padding: 20px;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.categoria:hover {
+    transform: translateY(-5px);
+}
+
+.categoria img {
+    width: 100%;
+    height: 130px;
+    object-fit: contain;
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+.categoria h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #333;
+}
+
+/* Botón de explorar */
+.btn-explorar {
+    display: inline-block;
+    padding: 10px 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    background-color: #ff3399;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-explorar:hover {
+    background-color: #c2185b;
+}
+
+/* === Sección Info Cards === */
+.info-sections {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    padding: 60px 20px;
+}
+
+.info-card {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 30px 25px;
+    width: 280px;
+    text-align: center;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s ease;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+}
+
+.info-card h3 {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #ff3399;
+    margin-bottom: 12px;
+}
+
+.info-card p {
+    font-size: 0.95rem;
+    color: #444;
+    line-height: 1.5;
+}
+
+.icono-info {
+    font-size: 2.5rem;
+    color: hotpink;
+    margin-bottom: 15px;
+    display: block;
+    text-align: center;
+}
+
+/* Botones de categorías */
+.categoria {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    background-color: none;
+}
+
+.categoria-btn {
+    padding: 8px 18px;
+    background-color: #fff;
+    border: 2px solid #e83e8c;
+    border-radius: 20px;
+    color: #e83e8c;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.categoria-btn:hover,
+.categoria-btn.activo {
+    background-color: #e83e8c;
+    color: white;
+}

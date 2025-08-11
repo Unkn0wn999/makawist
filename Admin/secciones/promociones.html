@@ -1,0 +1,99 @@
+<h1 class="h3 mb-4 text-gray-800">Gestión de Promociones</h1>
+<div class="card shadow border-start border-danger mb-4">
+  <div class="card-header d-flex justify-content-between align-items-center">
+    <h6 class="m-0 font-weight-bold text-danger">Listado de Promociones / Cupones</h6>
+    <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalAgregarPromocion">
+      <i class="bi bi-plus-circle"></i> Nueva Promoción
+    </button>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-hover" id="tabla-promociones">
+        <thead class="table-light">
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Código</th>
+            <th>Descuento (%)</th>
+            <th>Inicio</th>
+            <th>Fin</th>
+            <th>Activo</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Registrar -->
+<div class="modal fade" id="modalAgregarPromocion" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="formAgregarPromocion">
+        <div class="modal-body">
+          <input id="promoNombre" class="form-control mb-2" placeholder="Nombre" required />
+          <input id="promoCodigo" class="form-control mb-2" placeholder="Código promocional" required />
+          <input id="promoDescuento" type="number" class="form-control mb-2" placeholder="Descuento (%)" required />
+          <input id="promoInicio" type="date" class="form-control mb-2" required />
+          <input id="promoFin" type="date" class="form-control mb-2" required />
+          <select id="promoActivo" class="form-select mb-2" required>
+            <option value="1" selected>Activo</option>
+            <option value="0">Inactivo</option>
+          </select>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-danger" type="submit">Registrar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Editar -->
+<div class="modal fade" id="modalEditarPromocion" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="formEditarPromocion">
+        <div class="modal-body">
+          <input id="editPromoId" type="hidden" />
+          <input id="editPromoNombre" class="form-control mb-2" required />
+          <input id="editPromoCodigo" class="form-control mb-2" required />
+          <input id="editPromoDescuento" type="number" class="form-control mb-2" required />
+          <input id="editPromoInicio" type="date" class="form-control mb-2" required />
+          <input id="editPromoFin" type="date" class="form-control mb-2" required />
+          <select id="editPromoActivo" class="form-select mb-2" required>
+            <option value="1">Activo</option>
+            <option value="0">Inactivo</option>
+          </select>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-danger" type="submit">Guardar cambios</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- Modal Confirmar Eliminación -->
+<div class="modal fade" id="modalConfirmarEliminacion" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-start border-danger">
+      <div class="modal-header">
+        <h5 class="modal-title text-danger">Confirmar Eliminación</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        ¿Estás seguro que deseas eliminar esta promoción?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancelar</button>
+        <button id="btnConfirmarEliminar" type="button" class="btn btn-danger btn-sm">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Toastify -->
+<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script src="/Admin/js/promociones.js"></script>

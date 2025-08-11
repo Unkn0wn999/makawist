@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prueba de Login</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Prueba de Login</h4>
+          </div>
+          <div class="card-body">
+            <form id="loginForm">
+              <div class="mb-3">
+                <label for="correo" class="form-label">Correo electrónico</label>
+                <input type="email" class="form-control" id="correo" required>
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="password" required>
+              </div>
+              <button type="submit" class="btn btn-primary w-100">Iniciar sesión</button>
+            </form>
+          </div>
+        </div>
+        
+        <div class="card mt-4">
+          <div class="card-header bg-info text-white">
+            <h4 class="mb-0">Información del Token</h4>
+          </div>
+          <div class="card-body">
+            <div id="tokenInfo">
+              <p>No hay token disponible</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Verificar si ya hay un token
+      const token = localStorage.getItem('token');
+      if (token) {
+        mostrarInfoToken(token);
+      }
+      
+      // Configurar formulario de login
+      document.getElementById('loginForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const correo = document.getElementById('correo').value;
+        const password = document.getElementById('password').value;
+        
+        try {
+          console.log('Intentando login con:', { correo });
+          
+          const res = await fetch('/api/auth/login', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ correo, password })
+          });
+          
+          console.log('Respuesta del servidor:', res.status, res.statusText);
+          
+          if (!res.ok) {
+            const error = await res.json();
+            throw new Error(error.mensaje || 'Error al iniciar sesión');
+          }
+          
+          const data = await res.json();
+          console.log('Datos recibidos:', data);
+          
+          // Guardar token
+          localStorage.setItem('token', data.token);
+          
+          // Mostrar información del token
+          mostrarInfoToken(data.token);
+          
+          alert('Login exitoso!');
+          
+        } catch (error) {
+          console.error('Error:', error);
+          alert('Error: ' + error.message);
+        }
+      });
+    });
+    
+    function mostrarInfoToken(token) {
+      try {
+        // Decodificar token (solo para visualización, no para verificación)
+        const tokenParts = token.split('.');
+        const header = JSON.parse(atob(tokenParts[0]));
+        const payload = JSON.parse(atob(tokenParts[1]));
+        
+        const tokenInfo = document.getElementById('tokenInfo');
+        tokenInfo.innerHTML = `
+          <div class="mb-3">
+            <h5>Token:</h5>
+            <textarea class="form-control" rows="3" readonly>${token}</textarea>
+          </div>
+          <div class="mb-3">
+            <h5>Header:</h5>
+            <pre class="bg-light p-2">${JSON.stringify(header, null, 2)}</pre>
+          </div>
+          <div class="mb-3">
+            <h5>Payload:</h5>
+            <pre class="bg-light p-2">${JSON.stringify(payload, null, 2)}</pre>
+          </div>
+          <button id="btnBorrarToken" class="btn btn-danger">Borrar Token</button>
+          <button id="btnIrPerfil" class="btn btn-success ms-2">Ir a Perfil</button>
+        `;
+        
+        // Configurar botón para borrar token
+        document.getElementById('btnBorrarToken').addEventListener('click', () => {
+          localStorage.removeItem('token');
+          tokenInfo.innerHTML = '<p>No hay token disponible</p>';
+        });
+        
+        // Configurar botón para ir a perfil
+        document.getElementById('btnIrPerfil').addEventListener('click', () => {
+          window.location.href = '/Admin/secciones/perfil.html';
+        });
+        
+      } catch (error) {
+        console.error('Error al decodificar token:', error);
+        document.getElementById('tokenInfo').innerHTML = `
+          <div class="alert alert-danger">
+            Error al decodificar token: ${error.message}
+          </div>
+          <div class="mb-3">
+            <h5>Token (formato inválido):</h5>
+            <textarea class="form-control" rows="3" readonly>${token}</textarea>
+          </div>
+          <button id="btnBorrarToken" class="btn btn-danger">Borrar Token</button>
+        `;
+        
+        // Configurar botón para borrar token
+        document.getElementById('btnBorrarToken').addEventListener('click', () => {
+          localStorage.removeItem('token');
+          document.getElementById('tokenInfo').innerHTML = '<p>No hay token disponible</p>';
+        });
+      }
+    }
+  </script>
+</body>
+</html>

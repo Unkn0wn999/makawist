@@ -1,0 +1,192 @@
+/* SIDEBAR */
+.cuenta-sidebar {
+  background-color: hotpink;
+  color: white;
+  padding-top: 40px;
+  padding-left: 10px;
+  padding-right: 10px;
+  min-height: 100vh;
+}
+
+.cuenta-sidebar button {
+  background: none;
+  border: none;
+  color: white;
+  padding: 15px;
+  text-align: left;
+  width: 100%;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.cuenta-sidebar button:hover {
+  background-color: #ec4ca2;
+}
+
+/* CONTENIDO */
+.cuenta-content {
+  background-color: #fef4f8;
+  min-height: 100vh;
+  padding: 30px;
+  margin-bottom: 100px; /* Añadir margen inferior para evitar que el contenido se superponga con el footer */
+}
+
+.cuenta-section {
+  display: none;
+}
+
+.cuenta-section.active {
+  display: block;
+}
+
+/* TOAST */
+.toast-notificacion {
+  position: fixed;
+  background-color: #198754;
+  color: white;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 9999;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
+
+/* 🔲 FONDO OSCURO POPUPS (Direcciones y Tarjetas) */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1050;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 🧩 CAJA BLANCA DEL POPUP */
+.popup-box {
+  background: #fff;
+  padding: 25px 30px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 450px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* ✨ ENTRADA ANIMADA */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* 📋 INPUTS DE DIRECCIÓN */
+#formDireccion input {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+/* 📋 INPUTS DE TARJETA */
+#formTarjeta input,
+#formTarjeta select {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+/* 🎛️ BOTONES DEL POPUP */
+.popup-buttons,
+.popup-box .d-flex.justify-content-end {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+/* MENSAJE CENTRADO */
+.mensaje-centrado {
+  text-align: center;
+  font-style: italic;
+  color: #666;
+}
+
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-out {
+  animation: fadeOut 0.5s forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-in;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-in;
+}
+
+.animate-fade-out {
+  animation: fadeOut 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}

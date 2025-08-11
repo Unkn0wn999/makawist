@@ -1,0 +1,155 @@
+<!-- Admin/secciones/usuarios.html -->
+<h1 class="h3 mb-4 text-gray-800">Gestión de Usuarios</h1>
+
+<div class="card-body">
+  <div class="d-flex justify-content-end mb-3">
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAgregarUsuario">
+      <i class="bi bi-person-plus me-1"></i> Nuevo Usuario
+    </button>
+  </div>
+
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-hover table-bordered" id="tabla-usuarios">
+        <thead class="table-light">
+          <tr>
+            <th>ID</th>
+            <th>Nombre Completo</th>
+            <th>Correo</th>
+            <th>Documento</th>
+            <th>Rol</th>
+            <th>Estado</th>
+            <th>Registrado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<!-- Modal Edición Usuario -->
+<div class="modal fade" id="modalEditarUsuario" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Editar Usuario</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form id="formEditarUsuario">
+          <input type="hidden" id="editIdUsuario">
+          <div class="mb-3">
+            <label for="editNombres" class="form-label">Nombres</label>
+            <input type="text" class="form-control" id="editNombres" required>
+          </div>
+          <div class="mb-3">
+            <label for="editApellidos" class="form-label">Apellidos</label>
+            <input type="text" class="form-control" id="editApellidos" required>
+          </div>
+          <div class="mb-3">
+            <label for="editCorreo" class="form-label">Correo</label>
+            <input type="email" class="form-control" id="editCorreo" required>
+          </div>
+          <div class="mb-3">
+            <label for="editTipoDocumento" class="form-label">Tipo Documento</label>
+            <select class="form-select" id="editTipoDocumento">
+              <option value="">---</option>
+              <option value="DNI">DNI</option>
+              <option value="RUC">RUC</option>
+              <option value="CE">CE</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="editNumeroDocumento" class="form-label">Número Documento</label>
+            <input type="text" class="form-control" id="editNumeroDocumento">
+          </div>
+          <div class="mb-3">
+            <label for="editRol" class="form-label">Rol</label>
+            <select class="form-select" id="editRol" required>
+              <option value="cliente">Cliente</option>
+              <option value="admin">Administrador</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="editActivo" class="form-label">Estado</label>
+            <select class="form-select" id="editActivo">
+              <option value="1">Activo</option>
+              <option value="0">Inactivo</option>
+            </select>
+          </div>
+          <div class="text-end">
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Agregar Usuario -->
+<div class="modal fade" id="modalAgregarUsuario" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <form id="formAgregarUsuario" autocomplete="off">
+
+        <div class="modal-header">
+          <h5 class="modal-title">Registrar Nuevo Usuario</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+
+          <div class="mb-3">
+            <label class="form-label">Nombres</label>
+            <input type="text" class="form-control" id="nuevoNombres" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Apellidos</label>
+            <input type="text" class="form-control" id="nuevoApellidos" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Correo</label>
+            <input type="email" class="form-control" id="nuevoCorreo" required autocomplete="off">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Tipo Documento</label>
+            <select class="form-select" id="nuevoTipoDocumento" required>
+              <option value="">---</option>
+              <option value="DNI">DNI</option>
+              <option value="RUC">RUC</option>
+              <option value="CE">CE</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Número Documento</label>
+            <input type="text" class="form-control" id="nuevoNumeroDocumento" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="nuevoPassword" required autocomplete="new-password">
+
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Rol</label>
+            <select class="form-select" id="nuevoRol" required>
+              <option value="cliente">Cliente</option>
+              <option value="admin">Administrador</option>
+            </select>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success">Registrar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

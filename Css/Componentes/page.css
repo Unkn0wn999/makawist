@@ -1,0 +1,13 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  display: block;
+  padding-top: 0; /* Elimina cualquier relleno superior no deseado */
+}
+
+main > *:first-child {
+  margin-top: 0 !important; /* Asegura que el primer hijo (como carousel) no tenga margen superior */
+}

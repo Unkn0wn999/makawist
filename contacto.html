@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Makawi Store Cix</title>
+    <link rel="icon" type="image/png" href="imagenes/MakawiLogoBg.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="Css/estilos.css">
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+      }
+
+      body {
+        padding-top: 120px;
+        /* Altura del header fijo */
+        box-sizing: border-box;
+      }
+
+      main {
+        flex: 1;
+        display: block;
+      }
+
+      footer {
+        margin-top: auto;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <div id="header-placeholder"></div>
+
+    <main>
+
+      <!-- REDES SOCIALES -->
+      <section class="social-container text-center my-5">
+        <h3>Síguenos en nuestras redes sociales</h3>
+        <div class="social-icons d-flex flex-column align-items-center gap-3 mt-3">
+          <ul class="social-list">
+            <li><a href="#"><i class="bi bi-facebook fs-5 text-dark"></i> Facebook</a></li>
+            <li><a href="#"><i class="bi bi-instagram fs-5 text-dark"></i> Instagram</a></li>
+            <li><a href="#"><i class="bi bi-tiktok fs-5 text-dark"></i> Tiktok</a></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- FORMULARIO CONTACTO -->
+      <section class="fcontact py-5 bg-light">
+        <div class="container">
+          <form class="contact-form mx-auto" style="max-width: 600px;" action="/contacto/enviar" method="post"
+            enctype="text/plain">
+            <div class="form-group mb-3">
+              <input type="text" class="form-control" placeholder="Nombre completo" required>
+            </div>
+            <div class="form-group mb-3">
+              <input type="email" class="form-control" placeholder="Correo electrónico" required>
+            </div>
+            <div class="form-group mb-3">
+              <input type="tel" class="form-control" placeholder="Teléfono" required>
+            </div>
+            <div class="form-group mb-3">
+              <textarea class="form-control" placeholder="Mensaje" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-pink w-100">Enviar Mensaje</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- UBICACIÓN -->
+      <section class="map-section py-5">
+        <div class="container">
+          <div class="row align-items-center">
+
+            <!-- Columna izquierda: ubicación -->
+            <div class="col-lg-6 d-flex flex-column justify-content-center align-items-center text-center mb-4 mb-lg-0">
+              <div class="ubicacion">
+                <i class="bi bi-geo-alt-fill display-3 text-hotpink mb-3"></i>
+                <h4 class="text-hotpink">Ubicación</h4>
+                <p>Galería 7 de Enero</p>
+                <p>Stand 17.18</p>
+                <p>Chiclayo, Perú</p>
+              </div>
+            </div>
+
+            <!-- Columna derecha: mapa -->
+            <div class="col-lg-6">
+              <iframe class="map w-100"
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3962.0205806035533!2d-79.83689!3d-6.7673445!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x904ceed6ea57e9c1%3A0xa1105b842239cf41!2sGaleria%20Comercial%20Siete%20De%20Enero!5e0!3m2!1ses!2spe!4v1750542333221!5m2!1ses!2spe"
+                height="350" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+
+          </div>
+        </div>
+      </section>
+      <a href="https://wa.me/51932204477" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+        <i class="bi bi-whatsapp"></i>
+      </a>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <div id="popups-placeholder"></div>
+    <script src="Js/layout-loader.js"></script>
+    <script src="Js/toast.js"></script>
+
+  </body>
+
+</html>

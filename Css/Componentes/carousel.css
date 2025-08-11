@@ -1,0 +1,31 @@
+.carousel-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background-color: white;
+}
+.carousel {
+  margin-top: 90px;
+}
+
+
+.carousel-inner {
+  max-height: 500px;
+}
+
+.carousel-item {
+  height: 500px;
+  /* o la altura que quieras */
+}
+
+.carousel-item img {
+  height: 100%;
+  width: 100%;
+  object-fit: fill;
+
+
+}
+
+.carousel-item {
+  transition: transform 0.6s ease-in-out;
+}

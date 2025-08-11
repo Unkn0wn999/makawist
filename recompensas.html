@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Promociones | Makawi Store</title>
+    <link rel="icon" href="imagenes/MakawiLogoBg.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="Css/estilos.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+    <!-- JS de Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+
+    <style>
+      body {
+        padding-top: 120px !important;
+        padding-bottom: 50px !important;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Header -->
+    <div id="header-placeholder"></div>
+
+    <!-- Contenido principal -->
+    <main class="container py-5">
+      <h2 class="text-center mb-5 text-pink fw-bold">
+        <i class="bi bi-stars me-2"></i>Ofertas y Promociones
+      </h2>
+
+      <!-- 🎯 Promociones Activas -->
+      <div class="row g-4">
+        <!-- Aquí se insertarán dinámicamente las promociones activas -->
+      </div>
+
+      <!-- 🎉 Promociones Especiales -->
+      <section class="mt-5">
+        <h5 class="text-pink">
+          <i class="bi bi-gift-fill me-2"></i>Promociones Especiales
+        </h5>
+        <div class="bg-light rounded p-4 shadow-sm text-start">
+          <h6 class="text-pink fw-bold">
+            <i class="bi bi-cake2 me-2"></i>10% por tu cumpleaños
+          </h6>
+          <p>
+            <strong>Durante tu mes de cumpleaños</strong>, recibe un 10% de descuento en toda tu compra.
+            Solo presenta tu identificación (DNI o CE).
+          </p>
+          <p class="mb-0">Aplican términos y condiciones</p>
+        </div>
+      </section>
+
+      <!-- 🎁 Cupón -->
+      <!-- <section class="mt-5">
+        <h5 class="text-pink">
+          <i class="bi bi-ticket-perforated-fill me-2"></i>Cupones
+        </h5>
+        <form class="text-center mt-3" onsubmit="return false;">
+          <div class="input-group justify-content-center w-75 mx-auto">
+            <input type="text" class="form-control rounded-start" placeholder="Ingresa tu cupón" id="codigo-cupon">
+            <button type="button" class="btn btn-pink rounded-end" onclick="validarCupon()">Aplicar</button>
+          </div>
+          <div id="mensaje-cupon" class="mt-3 fw-semibold"></div>
+        </form>
+      </section> -->
+      <a href="https://wa.me/51932204477" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+        <i class="bi bi-whatsapp"></i>
+      </a>
+    </main>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Popups -->
+    <div id="popups-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="Js/layout-loader.js" defer></script>
+    <script src="Js/recompensas.js" defer></script>
+    <script>
+      async function validarCupon() {
+        const cupon = document.getElementById("codigo-cupon").value.trim().toUpperCase();
+        const mensaje = document.getElementById("mensaje-cupon");
+
+        if (!cupon) {
+          mensaje.textContent = "Ingrese un código de cupón";
+          mensaje.className = "mt-3 text-danger fw-semibold";
+          return;
+        }
+
+        try {
+          const res = await fetch(`/api/cupones/${cupon}`);
+          if (!res.ok) throw new Error("Cupón no válido o no disponible");
+          const data = await res.json();
+
+          let textoDescuento = "";
+          if (data.DescuentoPorcentaje && data.DescuentoPorcentaje > 0) {
+            textoDescuento = `${data.DescuentoPorcentaje}% de descuento`;
+          } else if (data.DescuentoMonto && data.DescuentoMonto > 0) {
+            textoDescuento = `S/. ${data.DescuentoMonto} de descuento`;
+          } else {
+            textoDescuento = "Descuento aplicado";
+          }
+
+          mensaje.textContent = `✅ Cupón aplicado: ${textoDescuento}`;
+          mensaje.className = "mt-3 text-success fw-semibold";
+        } catch (error) {
+          mensaje.textContent = error.message || "Cupón no válido";
+          mensaje.className = "mt-3 text-danger fw-semibold";
+        }
+      }
+
+    </script>
+
+  </body>
+
+</html>
