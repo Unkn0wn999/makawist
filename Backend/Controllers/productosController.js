@@ -221,6 +221,20 @@ const obtenerProductosNuevos = async (req, res) => {
   }
 };
 
+// 📊 Contar productos
+const contarProductos = async (req, res) => {
+  try {
+    const [rows] = await pool.query(`
+      SELECT COUNT(*) AS total FROM Productos
+    `);
+    res.json({ total: rows[0].total });
+  } catch (error) {
+    console.error("❌ Error al contar productos:", error);
+    res.status(500).json({ mensaje: "Error al contar productos" });
+  }
+};
+
+
 module.exports = {
   obtenerProductos,
   listarProductos,
@@ -228,5 +242,6 @@ module.exports = {
   actualizarProducto,
   obtenerProductoPorId,
   eliminarProducto,
-  obtenerProductosNuevos
+  obtenerProductosNuevos,
+  contarProductos
 };

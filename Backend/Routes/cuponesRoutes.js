@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const cuponesController = require('../Controllers/cuponesController');
 
+router.get('/activas/count', cuponesController.contarCuponesActivos);
 // Rutas públicas
 router.get('/promociones-activas', cuponesController.listarCuponesActivos);
 

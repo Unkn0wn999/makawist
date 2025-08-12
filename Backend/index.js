@@ -66,8 +66,8 @@ app.use("/api/direcciones", direccionesRoutes);
 
 app.use("/api/admin/categorias", require("./Routes/adminCategoriasRoutes"));
 
-const statsRoutes = require('./Routes/statsRoutes'); // asegúrate que la ruta esté bien
-app.use('/api', statsRoutes); // Así tus endpoints serán accesibles como /api/usuarios/total, etc.
+// const statsRoutes = require('./Routes/statsRoutes'); // asegúrate que la ruta esté bien
+// app.use('/api', statsRoutes); // Así tus endpoints serán accesibles como /api/usuarios/total, etc.
 
 // ✅ Vista del dashboard: Categorías
 app.get('/admin/categorias', (req, res) => {
@@ -128,6 +128,14 @@ pool.query('SELECT 1')
   .catch(err => {
     console.error('❌ Error al conectar con la base de datos:', err);
   });
+
+  const ventasRoutes = require('./Routes/ventasRoutes');
+app.use('/api/ventas', ventasRoutes);
+
+const statsRoutes = require("./Routes/statsRoutes");
+app.use("/api", statsRoutes);
+
+
 
 
 // Puerto

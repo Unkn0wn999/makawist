@@ -74,3 +74,14 @@ exports.eliminarCupon = async (req, res) => {
     res.status(500).json({ error: 'Error al eliminar cupón' });
   }
 };
+
+exports.contarCuponesActivos = async (req, res) => {
+  try {
+    const cupones = await Cupon.obtenerActivos();
+    res.json({ total: cupones.length });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Error al contar cupones activos' });
+  }
+};
+

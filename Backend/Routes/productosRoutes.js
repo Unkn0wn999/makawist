@@ -7,15 +7,19 @@ const {
   actualizarProducto,
   eliminarProducto,
   obtenerProductoPorId,
-  obtenerProductosNuevos
+  obtenerProductosNuevos,
+  contarProductos
 } = require("../Controllers/productosController");
 
 // Rutas públicas
-router.get("/", obtenerProductos);                 // /api/productos
-// Importante: La ruta específica debe ir antes que la ruta con parámetro
-router.get("/nuevos-productos", obtenerProductosNuevos);     // /api/productos/nuevos-productos
+router.get("/", obtenerProductos);                         // /api/productos
+router.get("/nuevos-productos", obtenerProductosNuevos);    // /api/productos/nuevos-productos
+
+// 📊 Contar productos (admin/dashboard)
+router.get("/count", contarProductos);
+
 // Las rutas con parámetros deben ir al final
-router.get("/:id", obtenerProductoPorId);          // /api/productos/:id
+router.get("/:id", obtenerProductoPorId);                   // /api/productos/:id
 
 // Rutas dashboard admin
 router.get("/dashboard", listarProductos);

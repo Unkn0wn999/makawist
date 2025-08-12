@@ -90,11 +90,11 @@ function esperarElemento(selector, callback, intentos = 20) {
 async function cargarDatosDashboard() {
   try {
     const [usuariosRes, categoriasRes, productosRes, ventasRes, promocionesRes] = await Promise.all([
-      fetch('/api/usuarios/total'),
-      fetch('/api/categorias/total'),
-      fetch('/api/productos/total'),
-      fetch('/api/ventas/total'),
-      fetch('/api/promociones/activas')
+      fetch('/api/usuarios/count'),
+      fetch('/api/categorias/count'),
+      fetch('/api/productos/count'),
+      fetch('/api/ventas/count'),
+      fetch('/api/cupones/activas/count')
     ]);
 
     const usuarios = await usuariosRes.json();
@@ -103,14 +103,13 @@ async function cargarDatosDashboard() {
     const ventas = await ventasRes.json();
     const promociones = await promocionesRes.json();
 
-    document.getElementById('card-usuarios').textContent = usuarios.total || 0;
-    document.getElementById('card-categorias').textContent = categorias.total || 0;
-    document.getElementById('card-productos').textContent = productos.total || 0;
-    document.getElementById('card-ventas').textContent = `S/${ventas.total?.toFixed(2) || '0.00'}`;
-    document.getElementById('card-promociones').textContent = promociones.total || 0;
+    document.getElementById('card-usuarios').textContent = usuarios.count || 0;
+    document.getElementById('card-categorias').textContent = categorias.count || 0;
+    document.getElementById('card-productos').textContent = productos.count || 0;
+    document.getElementById('card-ventas').textContent = `S/${Number(ventas.count || 0).toFixed(2)}`;
+    document.getElementById('card-promociones').textContent = promociones.count || 0;
 
   } catch (error) {
     console.error('❌ Error al cargar datos del dashboard:', error);
   }
 }
-

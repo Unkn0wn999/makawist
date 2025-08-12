@@ -5,13 +5,20 @@ const {
   registrarCategoria,
   actualizarCategoria,
   eliminarCategoria,
-   obtenerCategoriaPorId 
+  obtenerCategoriaPorId,
+  contarCategorias
 } = require("../Controllers/categoriasController");
 
+// Contar categorías (debe ir antes que /:id)
+router.get("/count", contarCategorias);
+
+// Rutas CRUD
 router.get("/", obtenerCategorias);
 router.post("/", registrarCategoria);
 router.put("/:id", actualizarCategoria);
 router.delete("/:id", eliminarCategoria);
-router.get('/:id', obtenerCategoriaPorId);
+
+// Esta siempre al final
+router.get("/:id", obtenerCategoriaPorId);
 
 module.exports = router;

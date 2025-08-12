@@ -76,6 +76,18 @@ const obtenerCategoriaPorId = async (req, res) => {
   }
 };
 
+const contarCategorias = async (req, res) => {
+  try {
+    const [rows] = await pool.query("SELECT COUNT(*) AS total FROM categorias");
+    res.json({ total: rows[0].total });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Error al contar categorías' });
+  }
+};
+
+
+
 
 module.exports = {
   obtenerCategorias,
@@ -83,4 +95,5 @@ module.exports = {
   actualizarCategoria,
   eliminarCategoria,
   obtenerCategoriaPorId,
+  contarCategorias
 };

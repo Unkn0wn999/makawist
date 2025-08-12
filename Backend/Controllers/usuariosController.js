@@ -195,6 +195,17 @@ const cambiarEstadoUsuario = async (req, res) => {
   }
 };
 
+const contarUsuarios = async (req, res) => {
+  try {
+    const [rows] = await pool.query("SELECT COUNT(*) AS count FROM Usuarios");
+    res.json({ count: rows[0].count });
+  } catch (error) {
+    console.error("❌ Error al contar usuarios:", error);
+    res.status(500).json({ mensaje: "Error al contar usuarios" });
+  }
+};
+
+
 // ✅ EXPORTAR TODO
 module.exports = {
   obtenerPerfil,
@@ -205,5 +216,6 @@ module.exports = {
   registrarUsuario,
   actualizarUsuario,
   eliminarUsuario,
-  cambiarEstadoUsuario
+  cambiarEstadoUsuario,
+  contarUsuarios
 };
